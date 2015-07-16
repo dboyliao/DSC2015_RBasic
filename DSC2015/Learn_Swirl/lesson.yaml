@@ -1,0 +1,48 @@
+- Class: meta
+  Course: DSC2015
+  Lesson: Learn_Swirl
+  Author: Ning Chen
+  Type: Standard
+  Organization: DSC 2015
+  Version: 0.1
+
+- Class: text
+  Output: 在 swirl 裡，當你看到 '>' 出現時就可以使用許多 swirl 內建函式。
+
+- Class: text
+  Output: 你可以使用 info 這個函式來列出所有可用的函式。
+  
+- Class: cmd_question
+  Output: 試試看吧! 執行 info()。鍵入 "next" 進入下一階段。
+  CorrectAnswer: "next"
+  AnswerTests:  omnitest(correctExpr='"next"')
+  
+- Class: text
+  Output: 題目卡住了嗎? 沒關係，答錯的話就會顯示提示喔!
+
+- Class: cmd_question
+  Output: 如果看完提示後試了又試還是不行，可以用 skip() 跳過問題。試試跳過這一題吧!
+  CorrectAnswer: "next"
+  AnswerTests: omnitest(correctExpr = '"next"')
+
+- Class: text
+  Output: 請不要 skip 所有的題目喔.....
+  
+- Class: text
+  Output: 如果作答前，你想做一些實驗看看，可以鍵入 play()，暫時跳出 swirl。
+  
+- Class: cmd_question
+  Output: 試試看吧! 鍵入 play()。當你實驗夠了，想回到 swirl 時，可以鍵入 nxt()。
+  CorrectAnswer: 
+
+- Class: text
+  Output: 當你實驗夠了，想回到 swirl 時，可以鍵入 nxt()。
+  
+- Class: text
+  Output: main() 會帶領你回到 swirl 課程主頁。
+  
+- Class: text
+  Output: bye() 將跳出 swirl 互動環境。
+  
+- Class: text
+  Output: OK! 這些就是基本的 swirl 操作，可以選取其他章節開始學 R 吧!

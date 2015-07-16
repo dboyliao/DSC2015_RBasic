@@ -1,0 +1,31 @@
+- Class: meta
+  Course: DSC2015
+  Lesson: Intro
+  Author: Ning Chen
+  Type: Standard
+  Organization: DSC 2015
+  Version: 0.1
+
+- Class: text
+  Output: 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
+
+- Class: text
+  Output: 我們將會教導大家基本的資料分析技巧，包括資料整理 (ETL) 、資料分析與資料視覺化等等。
+
+- Class: text
+  Output: 在本節的課程中，我們將會教導大家 R 的基本指令與操作。
+
+- Class: text
+  Output: 在這次的 workshop ，都是使用 swirl 這個 R 的互動式教學套件。
+
+- Class: text
+  Output: 跟 swirl 不熟嗎? 第一次使用 swirl 嗎?
+
+- Class: text
+  Output: 沒關係，等等請開啟 Learn Swirl 一節，我們將帶領大家學習 swirl 的基本操作。
+
+- Clss: text
+  Output: 熟悉 swirl 後，可開啟 RBasic 一節開始學習 R 。
+
+- Class: text
+  Output: OK! let the journey begin!

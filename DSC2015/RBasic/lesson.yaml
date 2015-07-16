@@ -1,0 +1,65 @@
+- Class: meta
+  Course: DSC2015
+  Lesson: RBasic
+  Author: Ning Chen
+  Type: Standard
+  Organization: DSC 2015
+  Version: 0.1
+
+- Class: text
+  Output: 歡迎參加 RBasic 課程!
+  
+- Class: text
+  Output: R 是近年最火紅的資料分析語言，讓我們先來用 R 做一個簡單的資料分析吧!
+  
+- Class: text
+  Output: R 有許多官方套件，這些套件中也有很多現成的資料可使用。
+  
+- Class: text
+  Output: 這次會使用的是 R 內建的套件 MASS，可以用 library 這個內建指令存取。
+  
+- Class: cmd_question
+  Output: 試看看鍵入 library("MASS") 看看吧!
+  CorrectAnswer: library("MASS")
+  AnswerTests: omnitest(correctExpr = 'library("MASS")')
+  Hint: 輸入 library("MASS")
+  
+- Class: text
+  Output: Yeah~~ 成功匯入 MASS 套件，現在讓我們來匯入 MASS 中內建的 Boston 資料表。
+  
+- Class: cmd_question
+  Output: 使用 data 這個內建函式，可以匯入套件中的資料表。請輸入 data("Boston") 試試看吧!
+  CorrectAnswer: data("Boston")
+  AnswerTests: omnitest(correctExpr = 'data("Boston")')
+  Hint: 輸入 data("Boston")
+  
+- Class: cmd_question
+  Output: 使用 View() 來查看匯入的資料表。請輸入 View(Boston)。
+  CorrectAnswer: View(Boston)
+  AnswerTests: omnitest(correctExpr = 'View(Boston)')
+  Hint: 輸入 View(Boston)
+  
+- Class: text
+  Output: 你現在應該看到 Boston 這個資料表的內容了。嗯....好多欄位都不知道是什麼意思呢。
+  
+- Class: cmd_question
+  Output: 沒關係，在 R 裡可以用 ? 來查詢相關資訊。請鍵入 ?Boston。
+  CorrectAnswer: ?Boston
+  AnswerTests: omnitest(correctExpr = "?Boston")
+  Hint: 輸入 ?Boston
+  
+- Class: text
+  Output: 有興趣的學員可以繼續研究這些欄位的意義，讓我們先專注在一個小問題吧!
+  
+- Class: text
+  Output: 房價與犯罪率的關係是如何? 負相關? 正相關? 還是....?
+  
+- Class: text
+  Output: 當然，直覺上來說應該是負相關，但是抱著 To see is to believe 的精神，我們希望能用資料證明它!
+  
+- Class: cmd_question
+  Output: 在 R 裡，這些統計計算是非常容易的。鍵入 cor(Boston[,"crim"], Boston[, "medv"])。
+  CorrectAnswer: cor(Boston[,"crim"], Boston[, "medv"])
+  AnswerTest: omnitest(correctExpr = 'cor(Boston[,"crim"], Boston[, "medv"])')
+  Hint: 請輸入 cor(Boston[,"crim"], Boston[, "medv"])
+
