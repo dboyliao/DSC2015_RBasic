@@ -1,14 +1,11 @@
 - Class: meta
   Course: DSC2015
-  Lesson: RBasic
+  Lesson: RBasic_Part_1:_Simple_Data_Analysis
   Author: Ning Chen
   Type: Standard
-  Organization: DSC 2015
+  Organization: DSC 2015 R Tutorial
   Version: 0.1
 
-- Class: text
-  Output: 歡迎參加 RBasic 課程!
-  
 - Class: text
   Output: R 是近年最火紅的資料分析語言，讓我們先來用 R 做一個簡單的資料分析吧!
   
@@ -49,10 +46,13 @@
   Hint: 輸入 ?Boston
   
 - Class: text
-  Output: 有興趣的學員可以繼續研究這些欄位的意義，讓我們先專注在一個小問題吧!
+  Output: 有興趣的學員可以繼續研究這些欄位的意義，讓我們先專注在一些小問題吧!
   
 - Class: text
   Output: 房價與犯罪率的關係是如何? 負相關? 正相關? 還是....?
+  
+- Class: text
+- Output: 房價又受那些因素影響呢? 影響多大呢?
   
 - Class: text
   Output: 當然，直覺上來說應該是負相關，但是抱著 To see is to believe 的精神，我們希望能用資料證明它!
@@ -63,3 +63,36 @@
   AnswerTest: omnitest(correctExpr = 'cor(Boston[,"crim"], Boston[, "medv"])')
   Hint: 請輸入 cor(Boston[,"crim"], Boston[, "medv"])
 
+- Class: text
+  Output: 果然如我們所料，計算出的相關係數是 -0.388 呈現負相關。
+  
+- Class: text
+  Output: 那房價有受其他因素影響嗎? 影響多大呢?
+  
+- Class: text
+  Output: 統計上我們常用線性迴歸來處理這類問題。R 中有 lm 這個內建函式。
+
+- Class: text
+  Output: 譬如說房價與犯罪率、空氣中一氧化氮比例、通勤距離和便利性的關係為例。
+  
+- Class: cmd_question
+  Output: 請輸入 fit = lm(medv ~ crim + nox + dist + rad, data = Boston)
+  CorrectAnswer: fit = lm(medv ~ crim + nox + dist + rad, data = Boston)
+  AnswerTest: omnitest(correctExpr = "fit = lm(medv ~ crim + nox + dist + rad, data = Boston)")
+  Hint: 請輸入 fit = lm(medv ~ crim + nox + dist + rad, data = Boston)
+  
+- Class: cmd_question
+  Output: 很好! 接下來可以使用 summary 產生簡單的分析結果。請輸入 summary(fit)。
+  CorrectAnswer: summary(fit)
+  AnswerTest: omnitest(correctExpr = "summary(fit)")
+  Hint: summary(fit)
+
+- Class: cmd_question
+  Output: 對這分析結果好奇嗎? 你可以輸入 play() 來嘗試別種線性模型。結束後用 skip() 繼續。
+  Hint: 請輸入 skip()
+  
+- Class: text
+  Output: 恭喜! 你已經用 R 完成了一次基本的資料分析。
+  
+- Class: text
+  Output: 接下來請打開 http://dboyliao.github.io/RBasic_reveal 繼續下面的課程。
