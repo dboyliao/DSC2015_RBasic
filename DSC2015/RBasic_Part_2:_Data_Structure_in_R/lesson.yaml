@@ -20,7 +20,7 @@
   
 - Class: cmd_question
   Output: 練習看看! 使用 c() 來建立一個向量 today 紀錄今天的日期吧!
-  CorrectAnswer: 'as.numeric(strsplit(format(Sys.Date(), "%Y-%m-%d"), "-")[[1]])'
+  CorrectAnswer: 'today <- as.numeric(strsplit(format(Sys.Date(), "%Y-%m-%d"), "-")[[1]])'
   AnswerTests: omnitest(correctVal = "ans_date")
   Hint: 假如今天是 2015/01/01，答案就是 today = c(2015, 1, 1) 喔!
 
@@ -55,3 +55,47 @@
 
 - Class: text
   Output: 兩個維度?! 圖片說明請到這個網址看看 --> http://dboyliao.github.io/RBasic_reveal/#/8/1
+
+- Class: text
+  Output: 我們可以用 matrix 這個內建函數建立矩陣。
+
+- Class: cmd_question
+  Output: 讓我們來試試看 matrix 這個內建函數吧! 請輸入 my_mat = matrix(c(1:15), 3, 5)。
+  CorrectAnswer: 'my_mat=matrix(c(1:15), 3, 5)'
+  AnswerTests: test_mat_exp1()
+
+- Class: text
+  Output: 存取矩陣中的特定元素也很簡單，譬如 my_mat[1, 1] 會回傳 my_mat 第一行第一列的元素。
+  
+- Class: cmd_question
+  Output: 自己試試看吧! 注意 my_mat 中的數字的排列方式。輸入 skip() 繼續。
+  CorrectAnswer: "'TWUseR Rocks!'"
+  AnswerTests: omnitest("'TWUseR Rocks!'")
+  Hint: ''
+
+- Class: text
+  Output: 我們不只可以存取單一一個元素，也可以存取特定區塊。
+
+- Class: cmd_question
+  Output: 讓我們看幾個例子，輸入 my_mat[1:3, 3:5]。
+  CorrectAnswer: my_mat[1:3, 3:5]
+  AnswerTests: test_mat_exp2()
+  Hint: 請輸入 my_mat[1:3, 3:5]
+
+- Class: text
+  Output: vector 與 matrix 有個使用上的限制。
+
+- Class: text
+  Output: 所有元素都必須是同一種資料類型。
+
+- Class: text
+  Output: 譬如說，必須全部都是數字或全部都是字串等等。
+
+- Class: text
+  Output: 那如果硬是把不同類型的資料放在一起會怎樣呢?
+
+- Class: cmd_question
+  Output: 來實驗一下吧! 輸入 vec = c('1', 2, 3)
+  CorrectAnswer: vec = c('1', 2, 3)
+  AnswerTests: any_of_exprs("vec = c('1', 2, 3)", 'vec = c("1", 2, 3)')
+  Hint: 請輸入 vec = c('1', 2, 3)

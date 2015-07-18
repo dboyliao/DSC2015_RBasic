@@ -4,6 +4,6 @@
 # throughout the lesson.
 rm(list=ls())
 
-pass <- function(){
-	print("跳關囉!")
+all_pass <- function(){
+	return TRUE
 }
