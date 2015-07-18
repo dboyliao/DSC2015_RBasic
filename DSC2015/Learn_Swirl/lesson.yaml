@@ -13,9 +13,9 @@
   Output: 你可以使用 info 這個函式來列出所有可用的函式。
   
 - Class: cmd_question
-  Output: 試試看吧! 執行 info() 看看會怎樣吧。鍵入 "next" 進入下一階段。
-  CorrectAnswer: "next"
-  AnswerTests:  omnitest(correctExpr='"next"')
+  Output: 試試看吧! 執行 info() 看看會怎樣吧。鍵入 skip() 進入下一階段。
+  CorrectAnswer: '"TWUseR Rocks"'
+  AnswerTests:  omnitest('"TWUseR Rocks"')
   Hint: 跳過此階段請輸入 skip()
   
 - Class: text
@@ -23,8 +23,8 @@
 
 - Class: cmd_question
   Output: 如果看完提示後試了又試還是不行，可以用 skip() 跳過問題。試試跳過這一題吧!
-  CorrectAnswer: "next"
-  AnswerTests: omnitest(correctExpr = '"next"')
+  CorrectAnswer: '"TWUseR Rocks"'
+  AnswerTests: omnitest('"TWUseR Rocks"')
   Hint: 可以輸入 skip() 跳過此階段。
 
 - Class: text
@@ -35,8 +35,8 @@
   
 - Class: cmd_question
   Output: 試試看吧! 鍵入 play()。當你實驗夠了，想回到 swirl 時，可以鍵入 nxt()。
-  CorrectAnswer: "next"
-  AnswerTests: omnitest(correctExpr='"next"')
+  CorrectAnswer: '"TWUseR Rocks"'
+  AnswerTests: omnitest('"TWUseR Rocks"')
   Hint: 請輸入 skip() 跳過這題。
 
 - Class: text
