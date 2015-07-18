@@ -14,6 +14,7 @@ set_lesson("DSC2015/RBasic_Part_1:_Simple_Data_Analysis/lesson.yaml")
 set_lesson("DSC2015/RBasic_Part_2:_Data_Structure_in_R/lesson.yaml")
 set_lesson("DSC2015/RBasic_Part_3:_Basic_Operations/lesson.yaml")
 set_lesson("DSC2015/RBasic_Part_4:_Loops_and_Control_Flow/lesson.yaml")
+
 zip_course("DSC2015", ".")
 system("cp swirl_zip_creator_TEMP/DSC2015.zip ./ && rm -rf swirl_zip_creator_TEMP")
 uninstall_course("DSC2015")

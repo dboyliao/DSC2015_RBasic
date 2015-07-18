@@ -7,19 +7,19 @@
   Version: 0.1
 
 - Class: text
-  Output: R 是近年最火紅的資料分析語言，讓我們先來用 R 做一個簡單的資料分析吧!
+  Output: R是近年最火紅的資料分析語言，讓我們先來用R做一個簡單的資料分析吧!
   
 - Class: text
-  Output: R 有許多官方套件，這些套件中也有很多現成的資料可使用。
+  Output: R有許多官方套件，這些套件中也有很多現成的資料可使用。
   
 - Class: text
-  Output: 這次會使用的是 R 內建的套件 MASS，可以用 library 這個內建指令存取。
+  Output: 這次會使用的是R內建的套件MASS，可以用library這個內建指令存取。
   
 - Class: cmd_question
-  Output: 試看看鍵入 library("MASS") 看看吧!
+  Output: 試看看鍵入library("MASS")看看吧!
   CorrectAnswer: library("MASS")
-  AnswerTests: omnitest(correctExpr = 'library("MASS")')
-  Hint: 輸入 library("MASS")
+  AnswerTests: any_of_exprs('library("MASS")', "library('MASS')", "library(MASS)")
+  Hint: 輸入library("MASS")
   
 - Class: text
   Output: Yeah~~ 成功匯入 MASS 套件，現在讓我們來匯入 MASS 中內建的 Boston 資料表。
@@ -27,41 +27,41 @@
 - Class: cmd_question
   Output: 使用 data 這個內建函式，可以匯入套件中的資料表。請輸入 data("Boston") 試試看吧!
   CorrectAnswer: data("Boston")
-  AnswerTests: omnitest(correctExpr = 'data("Boston")')
-  Hint: 輸入 data("Boston")
+  AnswerTests: any_of_exprs('data("Boston")', "data('Boston')")
+  Hint: 輸入data("Boston")
   
 - Class: cmd_question
   Output: 使用 View() 來查看匯入的資料表。請輸入 View(Boston)。
   CorrectAnswer: View(Boston)
-  AnswerTests: omnitest(correctExpr = 'View(Boston)')
-  Hint: 輸入 View(Boston)
+  AnswerTests: omnitest(correctExpr='View(Boston)')
+  Hint: 輸入View(Boston)
   
 - Class: text
-  Output: 你現在應該看到 Boston 這個資料表的內容了。嗯....好多欄位都不知道是什麼意思呢。
+  Output: 你現在應該看到Boston這個資料表的內容了。嗯....可是好多欄位都不知道是什麼意思呢。
   
 - Class: cmd_question
-  Output: 沒關係，在 R 裡可以用 ? 來查詢相關資訊。請鍵入 ?Boston。
+  Output: 沒關係，在R裡可以用?來查詢相關資訊。請鍵入?Boston。
   CorrectAnswer: ?Boston
-  AnswerTests: omnitest(correctExpr = "?Boston")
-  Hint: 輸入 ?Boston
+  AnswerTests: omnitest(correctExpr='?Boston')
+  Hint: 輸入?Boston
   
 - Class: text
   Output: 有興趣的學員可以繼續研究這些欄位的意義，讓我們先專注在一些小問題吧!
   
 - Class: text
-  Output: 房價與犯罪率的關係是如何? 負相關? 正相關? 還是....?
+  Output: 房價與犯罪率的關係是如何?負相關?正相關?還是....?
   
 - Class: text
-- Output: 房價又受那些因素影響呢? 影響多大呢?
+  Output: 房價又受那些因素影響呢?而影響多大呢?
   
 - Class: text
-  Output: 當然，直覺上來說應該是負相關，但是抱著 To see is to believe 的精神，我們希望能用資料證明它!
-  
+  Output: 當然，直覺上來說應該是負相關，但是抱著To see is to believe的精神，我們希望能用資料證明它!
+
 - Class: cmd_question
-  Output: 在 R 裡，這些統計計算是非常容易的。鍵入 cor(Boston[,"crim"], Boston[, "medv"])。
-  CorrectAnswer: cor(Boston[,"crim"], Boston[, "medv"])
-  AnswerTest: omnitest(correctExpr = 'cor(Boston[,"crim"], Boston[, "medv"])')
-  Hint: 請輸入 cor(Boston[,"crim"], Boston[, "medv"])
+  Output: 在 R 裡，這些統計計算是非常容易的。鍵入cor(Boston[, 'crim'], Boston[, 'medv'])。
+  CorrectAnswer: cor(Boston[, 'crim'], Boston[, 'medv'])
+  AnswerTests: any_of_exprs("cor(Boston[, 'crim'], Boston[, 'medv'])", 'cor(Boston[, "crim"], Boston[, "medv"])', "cor(Boston$crim, Boston$medv)")
+  Hint: 請輸入cor(Boston[,'crim'], Boston[,'medv'])
 
 - Class: text
   Output: 果然如我們所料，計算出的相關係數是 -0.388 呈現負相關。
@@ -70,29 +70,31 @@
   Output: 那房價有受其他因素影響嗎? 影響多大呢?
   
 - Class: text
-  Output: 統計上我們常用線性迴歸來處理這類問題。R 中有 lm 這個內建函式。
+  Output: 統計上我們常用線性迴歸來處理這類問題。R中有lm這個內建函式。
 
 - Class: text
   Output: 譬如說房價與犯罪率、空氣中一氧化氮比例、通勤距離和便利性的關係為例。
-  
+
 - Class: cmd_question
-  Output: 請輸入 fit = lm(medv ~ crim + nox + dist + rad, data = Boston)
-  CorrectAnswer: fit = lm(medv ~ crim + nox + dist + rad, data = Boston)
-  AnswerTest: omnitest(correctExpr = "fit = lm(medv ~ crim + nox + dist + rad, data = Boston)")
-  Hint: 請輸入 fit = lm(medv ~ crim + nox + dist + rad, data = Boston)
+  Output: 請輸入 fit=lm(medv ~ crim + nox + dis + rad, data = Boston)
+  CorrectAnswer: fit=lm(medv ~ crim + nox + dis + rad, data = Boston)
+  AnswerTests: omnitest("fit=lm(medv ~ crim + nox + dis + rad, data = Boston)")
+  Hint: 請輸入fit=lm(medv ~ crim + nox + dis + rad, data = Boston)
   
 - Class: cmd_question
   Output: 很好! 接下來可以使用 summary 產生簡單的分析結果。請輸入 summary(fit)。
   CorrectAnswer: summary(fit)
-  AnswerTest: omnitest(correctExpr = "summary(fit)")
+  AnswerTests: omnitest(correctExpr='summary(fit)')
   Hint: summary(fit)
 
 - Class: cmd_question
   Output: 對這分析結果好奇嗎? 你可以輸入 play() 來嘗試別種線性模型。結束後用 skip() 繼續。
+  CorrectAnswer: pass()
+  AnswerTests: omnitest(correctExpr="pass()")
   Hint: 請輸入 skip()
   
 - Class: text
   Output: 恭喜! 你已經用 R 完成了一次基本的資料分析。
   
 - Class: text
-  Output: 接下來請打開 http://dboyliao.github.io/RBasic_reveal 繼續下面的課程。
+  Output: 接下來請打開 RBasic Part 2 繼續下面的課程。

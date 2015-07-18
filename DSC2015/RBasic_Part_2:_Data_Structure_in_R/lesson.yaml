@@ -3,5 +3,55 @@
   Lesson: RBasic_Part_2:_Data_Structure_in_R
   Author: Ning Chen
   Type: Standard
-  Organization: DSC 2015: R Tutorial
+  Organization: DSC 2015 R Tutorial
   Version: 0.1
+
+- Class: text
+  Output: 在這一小節中，我們將探討 R 內建的許多資料結構與他們的相關操作。
+  
+- Class: text
+  Output: 包括向量(Vector)、矩陣(Matrix)、List、資料表(Data Frame)與 Factor。
+  
+- Class: text
+  Output: 讓我們開始吧! 首先是 R 中的向量(Vector)。
+  
+- Class: text
+  Output: 在 R 中建立向量的方法是使用c函數 (concatenate function)。
+  
+- Class: cmd_question
+  Output: 練習看看! 使用 c() 來建立一個向量 today 紀錄今天的日期吧!
+  CorrectAnswer: 'as.numeric(strsplit(format(Sys.Date(), "%Y-%m-%d"), "-")[[1]])'
+  AnswerTests: omnitest(correctVal = "ans_date")
+  Hint: 假如今天是 2015/01/01，答案就是 today = c(2015, 1, 1) 喔!
+
+- Class: cmd_question
+  Output: 我們也可以用 [] 來存取向量中的資料，試試看 today[1] 吧!
+  CorrectAnswer: 'today[1]'
+  AnswerTests: omnitest("today[1]")
+  
+- Class: text
+  Output: R 中的向量也為它取名字喔! 這樣可以方便存取資料。來用一個 today_named 是有 year, month, day 3 個欄位的向量吧!
+  
+- Class: text
+  Output: 舉例來說，my_vec=c(first_name="Ning",last_name="Chen") 會建立一個 my_vec 有兩個欄位 first_name 與 last_name。
+
+- Class: cmd_question
+  Output: 試試看吧! 造個 today_named 向量是有欄位名字的向量紀錄今天的日期。
+  CorrectAnswer: 'today_named = today; names(today_named) = c("year", "month", "day")'
+  AnswerTests: omnitest(correctVal = "named_ans_date")
+  Hint: 語法是 c(name=value, name=value, ...) 喔!
+
+- Class: cmd_question
+  Output: 取名字的好處是，我們可以用欄位名去存取相關資料，語法也比較清楚好讀。試試看 today_named["year"]
+  CorrectAnswer: 'today_named["year"]'
+  AnswerTests: any_of_exprs('today_named["year"]', "today_named['year']")
+  Hint: 請輸入 today_named["year"]
+
+- Class: text
+  Output: 同樣是存取年份，today_named["year"] 是不是比 today[1] 好讀很多啊!
+
+- Class: text
+  Output: 再來我們介紹矩陣(Matrix)。與向量不同的是，矩陣有兩個維度....
+
+- Class: text
+  Output: 兩個維度?! 圖片說明請到這個網址看看 --> http://dboyliao.github.io/RBasic_reveal/#/8/1
