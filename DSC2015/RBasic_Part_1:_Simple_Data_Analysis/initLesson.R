@@ -5,5 +5,5 @@
 rm(list=ls())
 
 all_pass <- function(){
-	return TRUE
+	return(TRUE)
 }

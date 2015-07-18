@@ -89,8 +89,8 @@
 
 - Class: cmd_question
   Output: 對這分析結果好奇嗎? 你可以輸入 play() 來嘗試別種線性模型。結束後用 skip() 繼續。
-  CorrectAnswer: pass()
-  AnswerTests: omnitest(correctExpr="pass()")
+  CorrectAnswer: '"TWUseR Rocks"'
+  AnswerTests: omnitest('"TWUseR Rocks"')
   Hint: 請輸入 skip()
   
 - Class: text

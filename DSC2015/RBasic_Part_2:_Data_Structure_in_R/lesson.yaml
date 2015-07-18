@@ -97,5 +97,41 @@
 - Class: cmd_question
   Output: 來實驗一下吧! 輸入 vec = c('1', 2, 3)
   CorrectAnswer: vec = c('1', 2, 3)
-  AnswerTests: any_of_exprs("vec = c('1', 2, 3)", 'vec = c("1", 2, 3)')
+  AnswerTests: test_heter_vec()
   Hint: 請輸入 vec = c('1', 2, 3)
+
+- Class: text
+  Output: 有發現嗎? R 會把所有元素轉換成同一種資料類型。
+
+- Class: text
+  Output: 如果想儲存異質的資料，我們可以使用 list。
+
+- Class: cmd_question
+  Output: 來試試就知道，請輸入 my_list = list('1', 2, 3)
+  CorrectAnswer: my_list = list('1', 2, 3)
+  AnswerTests: omnitest(correctVal="ans_list")
+  Hint: 請輸入 my_list = list('1', 2, 3)
+
+- Class: text
+  Output: 跟向量一樣，我們也可以為 list 的欄位取名字。
+
+- Class: text
+  Output: 語法跟 vector 語法一樣，試試看建立一個名為 me 的 list 有著 name、age 與 height 三個欄位。
+
+- Class: cmd_question
+  Output: 記得把這個 list 命名為 me 喔!
+  CorrectAnswer: me = list(name = "Ning Chen", age = 28, height = 168)
+  AnswerTests: var_is_a('list', 'me')
+  Hint: 請輸入 me = list(name = "your name", age = 18, height = 180)
+
+- Class: cmd_question
+  Output: 這樣有名字的 list，也可以跟 vector 一樣，用姓名存取資料。試著玩看看吧，玩完請輸入 skip() 繼續。
+  CorrectAnswer: '"TWUseR Rocks"'
+  AnswerTests: omnitest('"TWUseR Rocks"')
+  Hint: 輸入 skip() 繼續。
+
+- Class: text
+  Output: Data Frame....
+
+- Class: text
+  Output: Factor....
