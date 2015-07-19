@@ -27,7 +27,7 @@
 - Class: cmd_question
   Output: 使用 data 這個內建函式，可以匯入套件中的資料表。請輸入 data("Boston") 試試看吧!
   CorrectAnswer: data("Boston")
-  AnswerTests: any_of_exprs('data("Boston")', "data('Boston')")
+  AnswerTests: any_of_exprs('data("Boston")', "data('Boston')", "data(Boston)")
   Hint: 輸入data("Boston")
   
 - Class: cmd_question

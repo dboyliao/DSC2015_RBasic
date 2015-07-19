@@ -151,7 +151,7 @@
 - Class: cmd_question
   Output: Good! 成功匯入了 MASS，再來就可以用 data 這個內建函數匯入 Boston 資料表。試試看吧!
   CorrectAnswer: data('Boston')
-  AnswerTests: any_of_exprs("data('Boston')", 'data("Boston")')
+  AnswerTests: any_of_exprs("data('Boston')", 'data("Boston")', "data(Boston)")
   Hint: 請輸入 data('Boston')
   
 - Class: cmd_question
