@@ -21,3 +21,7 @@ uninstall_course("DSC2015")
 install_course_zip("DSC2015.zip")
 delete_progress("dboy")
 swirl()
+
+set_swirl_options(courses_dir = NULL)
+swirl2html() # testing
+getOption('courses_dir')

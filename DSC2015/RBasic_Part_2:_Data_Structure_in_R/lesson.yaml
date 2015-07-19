@@ -36,8 +36,8 @@
   Output: 舉例來說，my_vec=c(first_name="Ning",last_name="Chen") 會建立一個 my_vec 有兩個欄位 first_name 與 last_name。
 
 - Class: cmd_question
-  Output: 試試看吧! 造個 today_named 向量是有欄位名字的向量紀錄今天的日期。
-  CorrectAnswer: 'today_named = today; names(today_named) = c("year", "month", "day")'
+  Output: 試試看吧! 造個 today_named 向量是有欄位名字分別為 year、month和 day 的向量紀錄今天的日期。
+  CorrectAnswer: today_named = named_ans_date
   AnswerTests: omnitest(correctVal = "named_ans_date")
   Hint: 語法是 c(name=value, name=value, ...) 喔!
 
@@ -131,7 +131,101 @@
   Hint: 輸入 skip() 繼續。
 
 - Class: text
-  Output: Data Frame....
+  Output: data.frame 是 R 的內建函式，用以建立資料表。
 
 - Class: text
-  Output: Factor....
+  Output: 資料表許多的操作與向量或矩陣等資料形態類似。圖片說明請看 --> http://dboyliao.github.io/RBasic_reveal/#/9/1
+
+- Class: text
+  Output: 在 Simple Data Analysis 一節中，各位已經使用過資料表這種資料型態了，還記得嗎?
+
+- Class: text
+  Output: 忘了沒關係，還記得 Boston 這個資料表嗎?
+
+- Class: cmd_question
+  Output: 試試看把 Boston 這個內建的資料表匯入吧! 首先要先匯入 MASS 套件
+  CorrectAnswer: library("MASS")
+  AnswerTests: test_library_mass()
+  Hint: library 可以匯入套件喔!
+
+- Class: cmd_question
+  Output: Good! 成功匯入了 MASS，再來就可以用 data 這個內建函數匯入 Boston 資料表。試試看吧!
+  CorrectAnswer: data('Boston')
+  AnswerTests: any_of_exprs("data('Boston')", 'data("Boston")')
+  Hint: 請輸入 data('Boston')
+  
+- Class: cmd_question
+  Output: 試試看吧! 請截取出 Boston 資料表中的 crim 一欄中的所有資料。
+  CorrectAnswer: Boston[,"crim"]
+  AnswerTests: test_one_col()
+  Hint: 想想 [] 或 $ 吧!
+
+- Class: text
+  Output: 咦? 那如果我想把犯罪率分成低、偏低、中等、偏高與高 5 類呢? 而且我也想把它記錄到 Boston 這個資料表中耶。 
+
+- Class: cmd_question
+  Output: 在 R 也容易做到。先來試試分類吧! 並把分類的結果命名為 crim_level。請輸入 crim_level <- cut(Boston$crim, breaks = 5, labels = c("very good place", "good place", "so so", "bad place", "very bad place"))
+  CorrectAnswer: crim_level <- cut(Boston$crim, breaks = 5, labels = c("very good place", "good place", "so so", "bad place", "very bad place"))
+  AnswerTests: var_is_a('factor', 'crim_level')
+  Hint: 請輸入 crim_level<-cut(Boston$crim, breaks = 5, labels = c("very good place", "good place", "so so", "bad place", "very bad place"))
+
+- Class: cmd_question
+  Output: 要幫資料表增加欄位也很簡單，試試看 Boston$crim_level <- crim_level
+  CorrectAnswer: Boston$crim_level <- crim_level
+  AnswerTests: test_crim_level()
+  Hint: 請輸入 Boston$crim_level <- crim_level
+
+- Class: cmd_question
+  Output: 最後用 str 來看看最後 Boston 整體的結構。請輸入 str(Boston)
+  CorrectAnswer: str(Boston)
+  AnswerTests: omnitest("str(Boston)")
+  Hint: 請輸入 str(Boston)
+
+- Class: text
+  Output: Yeah~~媽! 我會 R 惹!!!
+
+- Class: text
+  Output: "別急著離開喔，我們來看看 str(Boston) 所列出的表的內容吧!"
+
+- Class: text
+  Output: "$ crim      : num  0.00632 0.02731 0.02729 0.03237 0.06905 ... 代表 crim 這一欄的值為一般數值 (numeric)。"
+
+- Class: text
+  Output: "$ rad       : int  1 2 2 3 3 3 5 5 5 5 ... 代表 rad 這一欄的值為整數 (integer)。"
+
+- Class: text
+  Output: 其他欄位..嗯...int, num...都一樣嘛，簡單啦!
+
+- Class: text
+  Output: 等等..! crim_level 那個 Factor 是什麼呢?
+
+- Class: text
+  Output: 沒錯，接下來將進入介紹 R 一種特殊的資料形態 Factor。
+
+- Class: text
+  Output: 簡單地來說，Factor 是一種索引的向量，伴隨著一個索引 <--> 值的 mapping。
+
+- Class: text
+  Output: (阿鬼....你還是說中文吧....=   =a)
+
+- Class: text
+  Output: 圖文的說明請看這邊 --> http://dboyliao.github.io/RBasic_reveal/#/11/9
+
+- Class: cmd_question
+  Output: levels 會回傳一個 factor 中所有可能的值。試試看 levels(Boston$crim_level) 吧!
+  CorrectAnswer: levels(Boston$crim_level)
+  AnswerTests: any_of_exprs("levels(Boston$crim_level)", 'levels(Boston[,"crim_level"])', "levels(Boston[,'crim_level'])")
+  Hint: 請輸入 levels(Boston$crim_level)
+
+- Class: cmd_question
+  Output: "我們拿一小段 crim_level 的值出來玩玩看。令 my_factor <- Boston[, 'crim_level']。輸入 skip() 繼續。"
+  CorrectAnswer: '"TWUseR Rocks"'
+  AnswerTests: omnitest('"TWUseR Rocks"')
+  Hint: 請輸入 skip() 繼續。
+
+- Class: mult_question
+  Output: 你覺得 as.numeric(my_factor) 的答案會是哪一個呢?
+  AnswerChoices: 沒有答案! 因為字串不能轉換成 numeric; [1] 5 5 5; [1] 1 1 1;
+  CorrectAnswer: "'[1] 1 1 1;'"
+  AnswerTests: omnitest(correctVal="'[1] 1 1 1;'")
+  Hint: 試試看吧!

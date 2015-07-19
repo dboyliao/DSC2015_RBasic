@@ -2,6 +2,7 @@
 # lesson is started. Any variables created here will show up in
 # the user's working directory and thus be accessible to them
 # throughout the lesson.
+
 all_pass <- function(){
 	return(TRUE)
 }
@@ -39,4 +40,38 @@ test_heter_vec <- function(){
 		         'vec = c("1", 2,3)',
 		         'vec = c("1",2,3)'
 		         )
+}
+
+test_library_mass <- function(){
+	any_of_exprs("library(MASS)",
+		         'library("MASS")',
+		         "library('MASS')")
+}
+
+test_one_col <- function(){
+	any_of_exprs("Boston[, 'crim']",
+		         'Boston[, "crim"]', 
+		         "Boston$crim")
+}
+
+test_crim_level <- function(){
+	any_of_exprs("Boston$crim_level <- crim_level",
+		         'Boston[, "crim_level"] <- crim_level',
+		         "Boston[, 'crim_level'] <- crim_level",
+		         'Boston[,"crim_level"] <- crim_level',
+		         "Boston[, 'crim_level'] <- crim_level")
+}
+
+test_is_a <- function(a_string, obj_string){
+	exits <- try(get(obj_string, inherits = F), T)
+	if (class(exits) == "try-error"){
+		return(F)
+	}
+	obj <- get(obj_string, inherits = F)
+	cond <- class(obj) == c(a_string)
+	if (class(cond) == "try-error"){
+		return(F)
+	} else {
+		return(T)
+	}
 }
