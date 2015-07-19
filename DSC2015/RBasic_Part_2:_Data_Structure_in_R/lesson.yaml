@@ -225,7 +225,7 @@
 
 - Class: mult_question
   Output: 你覺得 as.numeric(my_factor) 的答案會是哪一個呢?
-  AnswerChoices: 沒有答案! 因為字串不能轉換成 numeric; [1] 5 5 5; [1] 1 1 1;
-  CorrectAnswer: "'[1] 1 1 1;'"
-  AnswerTests: omnitest(correctVal="'[1] 1 1 1;'")
+  AnswerChoices: 沒有答案;1 1 1;5 5 5
+  CorrectAnswer: 1 1 1
+  AnswerTests: omnitest(correctVal="1 1 1")
   Hint: 試試看吧!
