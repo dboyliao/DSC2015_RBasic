@@ -1,0 +1,176 @@
+---
+title: R Basic
+author: Dboy Liao
+date: '`r Sys.Date()`<br><br><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="img/by-nc-sa-4.0-88x31.png" /></a>'
+output:
+  ioslides_presentation:
+    theme: flatly
+    highlight: default
+    logo: img/Taiwan-R-logo.png
+    widescreen: true
+    number_section: true
+  slidy_presentation:
+    toc: true
+    number_section: true
+subtitle: R 101
+---
+
+# Introduction
+
+---
+
+- 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
+
+---
+
+- 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
+- 我們將會教導大家基本的資料分析技巧，包括資料整理(ETL)、資料分析與資料視覺化等等。
+
+---
+
+- 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
+- 我們將會教導大家基本的資料分析技巧，包括資料整理(ETL)、資料分析與資料視覺化等等。
+- 在這次的 workshop ，都是使用 swirl 這個R的互動式教學套件。
+
+---
+
+- 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
+- 我們將會教導大家基本的資料分析技巧，包括資料整理(ETL)、資料分析與資料視覺化等等。
+- 在這次的 workshop ，都是使用 swirl 這個R的互動式教學套件。
+- 跟 R 不熟? 跟 swirl 更不熟? 沒關係，我們會帶領大家一步一步使用 R 與 swirl 套件。
+
+---
+
+- 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
+- 我們將會教導大家基本的資料分析技巧，包括資料整理(ETL)、資料分析與資料視覺化等等。
+- 在這次的 workshop ，都是使用 swirl 這個R的互動式教學套件。
+- 跟 R 不熟? 跟 swirl 更不熟? 沒關係，我們會帶領大家一步一步使用 R 與 swirl 套件。
+- OK! let the journey begin!
+
+
+# Learn Swirl
+
+---
+
+- 請輸入 `library("swirl")`
+
+---
+
+- 請輸入 `library("swirl")`
+- 執行 `swirl()` 進入互動教學模式。
+
+---
+
+- 請輸入 `library("swirl")`
+- 執行 `swirl()` 進入互動教學模式。
+- 遵照指令，你應該會看到:
+
+![swirl_name](img/swirl_enter_name.png)
+
+---
+
+- 如果課程有安裝成功，你應該可以看到:
+
+![swirl_sections](img/swirl_select_section.png)
+
+---
+
+- 如果課程有安裝成功，你應該可以看到:
+
+![swirl_sections](img/swirl_select_section.png)
+<br>
+（如果這時候想跳出，可以輸入 0 。）
+
+---
+
+- 如果沒有看到 `DSC2015` ，可以輸入下列指令進行安裝。
+
+![install_course](img/install_course.png)
+
+---
+
+- 如果看到以下畫面，就成功進入 R Basic 互動課程選單!
+
+![swirl_basic_courses](img/basic_courses.png)
+
+---
+
+- 如果看到以下畫面，就成功進入 R Basic 互動課程選單!
+
+![swirl_basic_courses](img/basic_courses.png)
+
+
+- 選取 `Learn Swirl` 一節開始吧!
+
+
+# Before Move on Next Step
+
+---
+
+- 簡單總結一下剛剛學會的基本指令。
+
+---
+
+- 簡單總結一下剛剛學會的基本指令。
+- +, -, *, / 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
+
+---
+
+- 簡單總結一下剛剛學會的基本指令。
+- +, -, *, / 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
+- %% 用於求餘數，%/% 用於求商。
+
+---
+
+- 簡單總結一下剛剛學會的基本指令。
+- +, -, *, / 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
+- %% 用於求餘數，%/% 用於求商。
+- ^ 用於計算冪級。
+
+---
+
+- 簡單總結一下剛剛學會的基本指令。
+- +, -, *, / 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
+- %% 用於求餘數，%/% 用於求商。
+- ^ 用於計算冪級。
+- (Important!) 碰到問題可以用 ? 與 ?? 查詢文件。
+
+# What's Next?
+
+---
+
+### Ning Chen
+<div>
+<img src="img/ning.jpg" width=35% height=35%>
+</div>
+
+- Data Structure
+
+---
+
+### Ning Chen
+<div>
+<img src="img/ning.jpg" width=35% height=35%>
+</div>
+
+- Data Structure
+- Data Analysis
+
+---
+
+### Noah
+<div>
+<img src="img/noah.jpg" width=25% height=25%>
+</div>
+
+- Function
+
+---
+
+### Noah
+<div>
+<img src="img/noah.jpg" width=25% height=25%>
+</div>
+
+- Function
+- Control Flow and Exception Handling

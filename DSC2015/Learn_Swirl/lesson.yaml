@@ -47,3 +47,7 @@
   
 - Class: text
   Output: OK! 這些就是基本的 swirl 操作，可以選取其他章節開始學 R 吧!
+  
+- Class: text
+  Output: 接下來請開啟 R Basic-Basic Operations 繼續。
+

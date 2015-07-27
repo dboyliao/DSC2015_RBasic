@@ -1,0 +1,154 @@
+- Class: meta
+  Course: DSC2015
+  Lesson: R_Basic_Part_0-The_Basics
+  Author: Dboy
+  Type: Standard
+  Organization: DSC 2015 R Tutorial
+  Version: 0.1
+  
+- Class: text
+  Output: "在這一小節裡，我們會簡單的介紹一些 R 中的常用函數。"
+
+- Class: text
+  Output: "首先是 ? 跟 ??"
+  
+- Class: text
+  Output: "? 跟 ?? 可以用來查詢 R 中各種函數的使用說明。"
+
+- Class: cmd_question
+  Output: "舉例來說，鍵入 ?sqrt 可以查詢 sqrt 這個內建函數的功能。試試看吧!"
+  CorrectAnswer: "?sqrt"
+  AnswerTests: omnitest("?sqrt")
+  Hint: "請輸入 ?sqrt 。"
+
+- Class: text
+  Output: "如何? 應該知道 sqrt 這個函數的功能與使用方式了吧!"
+
+- Class: text
+  Output: "sqrt 是用來求平方根的內建函數。"
+
+- Class: text
+  Output: '在 R 裡可以用 <- 或 = 指定值給變數。'
+  
+- Class: text
+  Output: '譬如 a <- 1 或 a = 1 就是指定 1 給 a 。'
+
+- Class: text
+  Output: '不過為了方便課程進行，接下來請使用 =。'
+
+- Class: cmd_question
+  Output: '練習看看! 請指定 101 大樓的高度 (公尺) 給一個變數名為 height_101' 
+  CorrectAnswer: height_101 = 509
+  AnswerTests: omnitest("height_101 = 509", 509)
+  Hint: "101 大樓頂端高度為 509 公尺。"
+  
+- Class: text
+  Output: 'TRUE 跟 FALSE 是 R 的邏輯值，分別代表真與假。'
+  
+- Class: text
+  Output: '所有邏輯判斷式皆會回傳一個 TRUE 或 FALSE。'
+  
+- Class: cmd_question
+  Output: 請輸入 is_higher = height_101 > height_khalifa 來比較 101 與哈里發塔的高度。
+  CorrectAnswer: is_higher = height_101 > height_khalifa
+  AnswerTests: test_higher()
+  Hint: 請輸入 is_higher = height_101 > height_khalifa
+  
+- Class: text
+  Output: 其他相關的比大小邏輯運算還包括諸如 > (大於), < (小於), >= (大於等於) 與 <= (小於等於)。
+  
+- Class: text
+  Output: 想像今天在菜市場，A 肉販說他家的五花肉 349元/kg，B 肉販說他家五花肉 209元/台斤。
+  
+- Class: text
+  Output: 這時候學過 R 的你就可以用簡單邏輯運算判斷哪家肉販比較便宜喔!
+  
+- Class: cmd_question
+  Output: 請輸入 A_is_cheaper = 349/1000 <= 209/600 來判斷說 A 肉販是否比較便宜呢!
+  CorrectAnswer: A_is_cheaper = 349/1000 <= 209/600
+  AnswerTests: omnitest("A_is_cheaper = 349/1000 <= 209/600", FALSE)
+  Hint: "請輸入 A_is_cheaper = 349/1000 <= 209/600"
+
+- Class: text
+  Output: 接著，可以用簡單的流程控制讓 R 告訴你該去哪一家!
+
+- Class: cmd_question
+  Output: 請輸入 if (A_is_cheaper) print("去 A 家買!") else print("去 B 家買!");
+  CorrectAnswer: if (A_is_cheaper) print("去 A 家買!") else print("去 B 家買!");
+  AnswerTests: omnitest("if (A_is_cheaper) print('去 A 家買!') else print('去 B 家買!')", "去 B 家買!")
+  Hint: 請輸入 if (A_is_cheaper) print("去 A 家買!") else print("去 B 家買!");
+
+- Class: text
+  Output: 計算結果得知，B 肉販比較便宜!
+
+- Class: text
+  Output: 哇! 學了 R 之後，我買菜都買到最經濟實惠的呢!
+
+- Class: text
+  Output: 關於流程控制的內容，在後面的課程會再詳細介紹。譬如 && (AND) 與 || (OR)。
+  
+- Class: text
+  Output: 回到我們的 101 大樓的例子，在 R studio 的變數表裡，應該有看到 is_higher 這個變數了，而且值為 FALSE。
+
+
+- Class: cmd_question
+  Output: "!(NOT)，可對邏輯值取負，或是表達不等於 (!=)，試試輸入 is_lower = !is_higher 吧!"
+  CorrectAnswer: is_shorter = !is_taller
+  AnswerTests: omnitest("is_lower = !is_higher", TRUE)
+  Hint: 請輸入 is_shorter = !is_taller
+
+- Class: text
+  Output: R 裡也有許多內建的運算符，例如 + (加法), - (減法), * (乘法) 與 / (除法) 。
+
+- Class: cmd_question
+  Output: "猜猜看! is_lower + is_lower 會等於多少呢? 請輸入結果。"
+  CorrectAnswer: 2
+  AnswerTests: omnitest("2")
+  Hint: 試著輸入 is_lower + is_lower 吧! 知道答案後請直接輸入答案喔!
+
+- Class: text
+  Output: 沒錯! 邏輯值如果用於一般的運算，R 會把 TRUE 當成 1 ，FALSE 當成 0 。
+  
+- Class: text
+  Output: 所以 is_lower + is_lower 就變成 TRUE + TRUE = 2 了!
+  
+- Class: text
+  Output: 最後，讓我們來看看其他 R 的內建運算子像是 %% (餘數), %/% (求商) 與 ^ (冪次)。
+  
+- Class: mult_question
+  Output: 猜猜看，你覺得 8 %% 3 是多少呢?
+  AnswerChoices: 0;1;2;3
+  CorrectAnswer: 2
+  AnswerTests: omnitest(correctVal="2")
+  Hint: 8 除以 3 的餘數是多少呢?
+
+- Class: text
+  Output: 沒錯! %% 計算的就是餘數。
+
+- Class: mult_question
+  Output: 那.... 8 %/% 2 又是多少呢?
+  AnswerChoices: 2;4;6;8
+  CorrectAnswer: 4
+  AnswerTests: omnitest(correctVal="4")
+  Hint: 8 除 2 的商是多少呢?
+
+- Class: text
+  Output: 沒錯! %/% 就是求商，這樣分得清楚 %% 與 %/% 的差別了吧!
+  
+- Class: text
+  Output: 最後，^ 可以用於冪級計算。
+  
+- Class: text
+  Output: 例如要計算 2 的 10 次方的話，只需要輸入 2^10 即可。
+
+- Class: cmd_question
+  Output: 試試看吧! 來算算 3 的 12 次方是多少!
+  CorrectAnswer: 3^12
+  AnswerTests: omnitest("3^12", 3^12)
+  Hint: 2 的 10 次方是 2^10
+
+- Class: text
+  Output: 恭喜! 你已經完成了 R Basic Part 0 的練習題!
+
+- Class: text
+  Output: 現在讓我們回到投影片的教學吧!

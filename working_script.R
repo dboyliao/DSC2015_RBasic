@@ -1,27 +1,38 @@
 library("swirl")
 library("swirlify")
+library("rmarkdown")
 
 setwd("~/Documents/R_scripts/Swirl_Cource/RBasic/")
-# new_lesson("Intro", "DSC2015")
 # new_lesson("Learn_Swirl", "DSC2015")
-# new_lesson("RBasic_Part_1:_Simple_Data_Analysis", "DSC2015")
-# new_lesson("RBasic_Part_2:_Data_Structure_in_R", "DSC2015")
-# new_lesson("RBasic_Part_3:_Basic_Operations", "DSC2015")
-# new_lesson("RBasic_Part_4:_Loops_and_Control_Flow", "DSC2015")
-# set_lesson("DSC2015/Intro/lesson.yaml")
+# new_lesson("R_Basic_Part_0-The_Basics", "DSC2015")
+# new_lesson("RBasic_Part_1-Simple_Data_Analysis", "DSC2015")
+# new_lesson("RBasic_Part_2-Data_Structure_in_R", "DSC2015")
+# new_lesson("R_Basic_Part_3-Function", "DSC2015")
+# new_lesson("R_Basic_Part_4-Control_Flow_and_Exception_Handling", "DSC2015")
 # set_lesson("DSC2015/Learn_Swirl/lesson.yaml")
-# set_lesson("DSC2015/RBasic_Part_1:_Simple_Data_Analysis/lesson.yaml")
-# set_lesson("DSC2015/RBasic_Part_2:_Data_Structure_in_R/lesson.yaml")
-# set_lesson("DSC2015/RBasic_Part_3:_Basic_Operations/lesson.yaml")
-# set_lesson("DSC2015/RBasic_Part_4:_Loops_and_Control_Flow/lesson.yaml")
+# set_lesson("DSC2015/R_Basic_Part_0-The_Basics/lesson.yaml")
+# set_lesson("DSC2015/R_Basic_Part_1-Simple_Data_Analysis/lesson.yaml")
+# set_lesson("DSC2015/R_Basic_Part_2-Data_Structure_in_R/lesson.yaml")
+# set_lesson("DSC2015/R_Basic_Part_3-Control_Flow/lesson.yaml")
+
 rm(list=ls())
-zip_course("DSC2015", ".")
-system("cp swirl_zip_creator_TEMP/DSC2015.zip ./ && rm -rf swirl_zip_creator_TEMP")
 uninstall_course("DSC2015")
-install_course_zip("DSC2015.zip")
+install_course_directory("DSC2015")
 delete_progress("dboy")
 swirl()
+
+render("~/Documents/R_scripts/Swirl_Cource/RBasic/index.Rmd", 
+       output_file = "index.html",
+       output_format = "ioslides_presentation")
+
+render("~/Documents/R_scripts/Swirl_Cource/RBasic/index.Rmd", 
+       output_file = "index.html",
+       output_format = "slidy_presentation")
 
 set_swirl_options(courses_dir = NULL)
 swirl2html() # testing
 getOption('courses_dir')
+
+
+library("devtools")
+devtools::install_github("swirl", "wush978")
