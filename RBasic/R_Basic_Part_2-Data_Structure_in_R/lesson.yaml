@@ -7,225 +7,107 @@
   Version: 0.1
 
 - Class: text
-  Output: 在這一小節中，我們將探討 R 內建的許多資料結構與他們的相關操作。
+  Output: 剛剛學了不少 R 的資料結構吧? 這一小節的課程是要讓你們熟悉如何操作這些內建的資料結構。
   
 - Class: text
-  Output: 包括向量(Vector)、矩陣(Matrix)、List、資料表(Data Frame)與 Factor。
+  Output: 像是把兩個字串合成一個、建立向量或 factor 等。
   
 - Class: text
-  Output: 讓我們開始吧! 首先是 R 中的向量(Vector)。
+  Output: 準備好了嗎? 讓我們開始吧!
   
 - Class: text
-  Output: 在 R 中建立向量的方法是使用c函數 (concatenate function)。
+  Output: 現在 RStudio 的變數表中，應該有看到兩個字串的變數 hello 跟 world 吧?
   
 - Class: cmd_question
-  Output: 練習看看! 使用 c() 來建立一個向量 today 紀錄今天的日期吧!
-  CorrectAnswer: 'today <- as.numeric(strsplit(format(Sys.Date(), "%Y-%m-%d"), "-")[[1]])'
-  AnswerTests: omnitest(correctVal = "ans_date")
-  Hint: 假如今天是 2015/01/01，答案就是 today = c(2015, 1, 1) 喔!
+  Output: 想想看，把這兩個字串合成一個 "Hello,World." 吧!
+  CorrectAnswer: paste(hello, world, sep = ",")
+  AnswerTests: omnitest('paste(hello, world, sep = ",")', paste(hello, world, sep = ","))
+  Hint: 可以使用 paste 函數連結兩個字串。
+
+- Class: text
+  Output: 正所謂"天下之事，合久必分分久必合"，字串也不例外。
 
 - Class: cmd_question
-  Output: 我們也可以用 [] 來存取向量中的資料，試試看 today[1] 吧!
-  CorrectAnswer: 'today[1]'
-  AnswerTests: omnitest("today[1]")
+  Output: 把 tenshia 這個變數所代表的字串從 "," 開始分開試試看吧!
+  CorrectAnswer: strsplit(tenshia, ",")
+  AnswerTests: omnitest('strsplit(tenshia, ",")', strsplit(tenshia, ","))
+  Hint: 可以試試 strsplit 。
+- Class: text
+  Output: 見到美女，直接指名道姓稱呼總是不禮貌。
   
 - Class: text
-  Output: R 中的向量也為它取名字喔! 這樣可以方便存取資料。來用一個 today_named 是有 year, month, day 3 個欄位的向量吧!
+  Output: 譬如說第一次見到郭雪芙，禮貌上總是先稱呼一聲郭小姐是吧~
+
+- Class: text
+  Output: 可是，給我一個人的名字，你能用 R 把她的姓找出來嗎?
+
+- Class: cmd_question
+  Output: 試試看吧! 請把 puff 這個變數的姓取出。
+  CorrectAnswer: substring(puff, 1, 1)
+  AnswerTests: omnitest("substring(puff, 1, 1)", substring(puff, 1, 1))
+  Hint: 有試過 substring
+
+- Class: text
+  Output: 我們當然也要照顧廣大女性同胞囉，應該找個男神來玩玩...喔不是，是當例子囉!
+
+- Class: cmd_question
+  Output: 把 takeshi 的姓取出來吧!
+  CorrectAnswer: substring(takeshi, 1, 2)
+  AnswerTests: omnitest("substring(takeshi, 1, 2)", substring(takeshi, 1, 2))
+  Hint: 金城武先生是姓"金城"喔!
+
+- Class: text
+  Output: OK! 現在學會基本的字串操作了吧~
+
+- Class: text
+  Output: 接下來是向量，你又記得多少呢? Practice make perfection!
+
+- Class: cmd_question
+  Output: 建立一個 months1 變數，其值為 1 2 3 4 .... 12 的整數向量。
+  CorrectAnswer: months = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+  AnswerTests: test_months()
+  Hint: 還記得 c 嗎?
+
+- Class: text
+  Output: 很好! 記得除了打長長的 "c(1, 2, 3, ...)" 之外，也可以用 months = 1:12 來建立向量喔。
+
+- Class: cmd_question
+  Output: 那...又該如何計算一個向量的長度呢? 請用 R 的內建指令求算 months 的長度。
+  CorrectAnswer: length(months)
+  AnswerTests: omnitest("length(months)", 12)
+  Hint: 試試看 length 吧!
+
+- Class: text
+  Output: 很好，接下來換 factor 了!
   
 - Class: text
-  Output: 舉例來說，my_vec=c(first_name="Ning",last_name="Chen") 會建立一個 my_vec 有兩個欄位 first_name 與 last_name。
-
-- Class: cmd_question
-  Output: 試試看吧! 造個 today_named 向量是有欄位名字分別為 year、month和 day 的向量紀錄今天的日期。
-  CorrectAnswer: today_named = named_ans_date
-  AnswerTests: omnitest(correctVal = "named_ans_date")
-  Hint: 語法是 c(name=value, name=value, ...) 喔!
-
-- Class: cmd_question
-  Output: 取名字的好處是，我們可以用欄位名去存取相關資料，語法也比較清楚好讀。試試看 today_named["year"]
-  CorrectAnswer: 'today_named["year"]'
-  AnswerTests: any_of_exprs('today_named["year"]', "today_named['year']")
-  Hint: 請輸入 today_named["year"]
-
-- Class: text
-  Output: 同樣是存取年份，today_named["year"] 是不是比 today[1] 好讀很多啊!
-
-- Class: text
-  Output: 再來我們介紹矩陣(Matrix)。與向量不同的是，矩陣有兩個維度....
-
-- Class: text
-  Output: 兩個維度?! 圖片說明請到這個網址看看 --> http://dboyliao.github.io/RBasic_reveal/#/8/1
-
-- Class: text
-  Output: 我們可以用 matrix 這個內建函數建立矩陣。
-
-- Class: cmd_question
-  Output: 讓我們來試試看 matrix 這個內建函數吧! 請輸入 my_mat = matrix(c(1:15), 3, 5)。
-  CorrectAnswer: 'my_mat=matrix(c(1:15), 3, 5)'
-  AnswerTests: test_mat_exp1()
-
-- Class: text
-  Output: 存取矩陣中的特定元素也很簡單，譬如 my_mat[1, 1] 會回傳 my_mat 第一行第一列的元素。
+  Output: factor 最需要注意的就是它與向量的差別了
   
-- Class: cmd_question
-  Output: 自己試試看吧! 注意 my_mat 中的數字的排列方式。輸入 skip() 繼續。
-  CorrectAnswer: "'TWUseR Rocks!'"
-  AnswerTests: omnitest("'TWUseR Rocks!'")
-  Hint: ''
+- Class: text
+  Output: 我幫你們造了兩個變數，分別是 my_vec 與 my_factor。
 
 - Class: text
-  Output: 我們不只可以存取單一一個元素，也可以存取特定區塊。
-
-- Class: cmd_question
-  Output: 讓我們看幾個例子，輸入 my_mat[1:3, 3:5]。
-  CorrectAnswer: my_mat[1:3, 3:5]
-  AnswerTests: test_mat_exp2()
-  Hint: 請輸入 my_mat[1:3, 3:5]
+  Output: 顧名思義，一個是向量一個是 factor 。
 
 - Class: text
-  Output: vector 與 matrix 有個使用上的限制。
-
-- Class: text
-  Output: 所有元素都必須是同一種資料類型。
-
-- Class: text
-  Output: 譬如說，必須全部都是數字或全部都是字串等等。
-
-- Class: text
-  Output: 那如果硬是把不同類型的資料放在一起會怎樣呢?
-
-- Class: cmd_question
-  Output: 來實驗一下吧! 輸入 vec = c('1', 2, 3)
-  CorrectAnswer: vec = c('1', 2, 3)
-  AnswerTests: test_heter_vec()
-  Hint: 請輸入 vec = c('1', 2, 3)
-
-- Class: text
-  Output: 有發現嗎? R 會把所有元素轉換成同一種資料類型。
-
-- Class: text
-  Output: 如果想儲存異質的資料，我們可以使用 list。
-
-- Class: cmd_question
-  Output: 來試試就知道，請輸入 my_list = list('1', 2, 3)
-  CorrectAnswer: my_list = list('1', 2, 3)
-  AnswerTests: omnitest(correctVal="ans_list")
-  Hint: 請輸入 my_list = list('1', 2, 3)
-
-- Class: text
-  Output: 跟向量一樣，我們也可以為 list 的欄位取名字。
-
-- Class: text
-  Output: 語法跟 vector 語法一樣，試試看建立一個名為 me 的 list 有著 name、age 與 height 三個欄位。
-
-- Class: cmd_question
-  Output: 記得把這個 list 命名為 me 喔!
-  CorrectAnswer: me = list(name = "Ning Chen", age = 28, height = 168)
-  AnswerTests: var_is_a('list', 'me')
-  Hint: 請輸入 me = list(name = "your name", age = 18, height = 180)
-
-- Class: cmd_question
-  Output: 這樣有名字的 list，也可以跟 vector 一樣，用姓名存取資料。試著玩看看吧，玩完請輸入 skip() 繼續。
-  CorrectAnswer: '"TWUseR Rocks"'
-  AnswerTests: omnitest('"TWUseR Rocks"')
-  Hint: 輸入 skip() 繼續。
-
-- Class: text
-  Output: data.frame 是 R 的內建函式，用以建立資料表。
-
-- Class: text
-  Output: 資料表許多的操作與向量或矩陣等資料形態類似。圖片說明請看 --> http://dboyliao.github.io/RBasic_reveal/#/9/1
-
-- Class: text
-  Output: 在 Simple Data Analysis 一節中，各位已經使用過資料表這種資料型態了，還記得嗎?
-
-- Class: text
-  Output: 忘了沒關係，還記得 Boston 這個資料表嗎?
-
-- Class: cmd_question
-  Output: 試試看把 Boston 這個內建的資料表匯入吧! 首先要先匯入 MASS 套件
-  CorrectAnswer: library("MASS")
-  AnswerTests: test_library_mass()
-  Hint: library 可以匯入套件喔!
-
-- Class: cmd_question
-  Output: Good! 成功匯入了 MASS，再來就可以用 data 這個內建函數匯入 Boston 資料表。試試看吧!
-  CorrectAnswer: data('Boston')
-  AnswerTests: any_of_exprs("data('Boston')", 'data("Boston")', "data(Boston)")
-  Hint: 請輸入 data('Boston')
-  
-- Class: cmd_question
-  Output: 試試看吧! 請截取出 Boston 資料表中的 crim 一欄中的所有資料。
-  CorrectAnswer: Boston[,"crim"]
-  AnswerTests: test_one_col()
-  Hint: 想想 [] 或 $ 吧!
-
-- Class: text
-  Output: 咦? 那如果我想把犯罪率分成低、偏低、中等、偏高與高 5 類呢? 而且我也想把它記錄到 Boston 這個資料表中耶。 
-
-- Class: cmd_question
-  Output: 在 R 也容易做到。先來試試分類吧! 並把分類的結果命名為 crim_level。請輸入 crim_level <- cut(Boston$crim, breaks = 5, labels = c("very good place", "good place", "so so", "bad place", "very bad place"))
-  CorrectAnswer: crim_level <- cut(Boston$crim, breaks = 5, labels = c("very good place", "good place", "so so", "bad place", "very bad place"))
-  AnswerTests: var_is_a('factor', 'crim_level')
-  Hint: 請輸入 crim_level<-cut(Boston$crim, breaks = 5, labels = c("very good place", "good place", "so so", "bad place", "very bad place"))
-
-- Class: cmd_question
-  Output: 要幫資料表增加欄位也很簡單，試試看 Boston$crim_level <- crim_level
-  CorrectAnswer: Boston$crim_level <- crim_level
-  AnswerTests: test_crim_level()
-  Hint: 請輸入 Boston$crim_level <- crim_level
-
-- Class: cmd_question
-  Output: 最後用 str 來看看最後 Boston 整體的結構。請輸入 str(Boston)
-  CorrectAnswer: str(Boston)
-  AnswerTests: omnitest("str(Boston)")
-  Hint: 請輸入 str(Boston)
-
-- Class: text
-  Output: Yeah~~媽! 我會 R 惹!!!
-
-- Class: text
-  Output: "別急著離開喔，我們來看看 str(Boston) 所列出的表的內容吧!"
-
-- Class: text
-  Output: "$ crim      : num  0.00632 0.02731 0.02729 0.03237 0.06905 ... 代表 crim 這一欄的值為一般數值 (numeric)。"
-
-- Class: text
-  Output: "$ rad       : int  1 2 2 3 3 3 5 5 5 5 ... 代表 rad 這一欄的值為整數 (integer)。"
-
-- Class: text
-  Output: 其他欄位..嗯...int, num...都一樣嘛，簡單啦!
-
-- Class: text
-  Output: 等等..! crim_level 那個 Factor 是什麼呢?
-
-- Class: text
-  Output: 沒錯，接下來將進入介紹 R 一種特殊的資料形態 Factor。
-
-- Class: text
-  Output: 簡單地來說，Factor 是一種索引的向量，伴隨著一個索引 <--> 值的 mapping。
-
-- Class: text
-  Output: (阿鬼....你還是說中文吧....=   =a)
-
-- Class: text
-  Output: 圖文的說明請看這邊 --> http://dboyliao.github.io/RBasic_reveal/#/11/9
-
-- Class: cmd_question
-  Output: levels 會回傳一個 factor 中所有可能的值。試試看 levels(Boston$crim_level) 吧!
-  CorrectAnswer: levels(Boston$crim_level)
-  AnswerTests: any_of_exprs("levels(Boston$crim_level)", 'levels(Boston[,"crim_level"])', "levels(Boston[,'crim_level'])")
-  Hint: 請輸入 levels(Boston$crim_level)
-
-- Class: cmd_question
-  Output: "我們拿一小段 crim_level 的值出來玩玩看。令 my_factor <- Boston[, 'crim_level']。輸入 skip() 繼續。"
-  CorrectAnswer: '"TWUseR Rocks"'
-  AnswerTests: omnitest('"TWUseR Rocks"')
-  Hint: 請輸入 skip() 繼續。
+  Output: 但它們又有什麼不同呢? 讓我們用下面的例子來看看。
 
 - Class: mult_question
-  Output: 你覺得 as.numeric(my_factor) 的答案會是哪一個呢?
-  AnswerChoices: 沒有答案;1 1 1;5 5 5 (因為5分是滿分啊!!)
-  CorrectAnswer: 1 1 1
-  AnswerTests: omnitest(correctVal="1 1 1")
-  Hint: 試試看吧!
+  Output: "as.numeric(my_vec) 會是多少呢?"
+  AnswerChoices: 1 2 1 1;NA;2 1 2 2
+  CorrectAnswer: 1 2 1 1
+  AnswerTests: omnitest(correctVal = "1 2 1 1")
+  Hint: 可以輸入 play() 來做實驗，做完記得用 nxt() 會到 swirl 喔!
+
+- Class: mul_question
+  Output: as.numeric(my_factor) 又會是多少呢?
+  AnswerChoices: 1 2 1 1;NA;2 1 2 2
+  CorrectAnswer: 2 1 2 2
+  AnswerTests: omnitest(correctVal = "2 1 2 2")
+  Hint: 試試看就知道囉!
+
+- Class: text
+  Output: 想想為什麼吧! 圖文說明請看這邊 ---> http://dboyliao.github.io/RBasic_reveal/#/11/9
+
+- Class: text
+  Output: 恭喜你完成了 R Basic Part 2 練習題! 讓我們開始 Part 3 吧!
