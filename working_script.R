@@ -11,7 +11,7 @@ setwd("~/Documents/R_scripts/Swirl_Cource/RBasic/")
 # new_lesson("R_Basic_Part_4-Control_Flow_and_Exception_Handling", "DSC2015")
 # set_lesson("DSC2015/Learn_Swirl/lesson.yaml")
 # set_lesson("DSC2015/R_Basic_Part_0-The_Basics/lesson.yaml")
-# set_lesson("DSC2015/R_Basic_Part_1-Simple_Data_Analysis/lesson.yaml")
+set_lesson("DSC2015/R_Basic_Part_1-Simple_Data_Analysis/lesson.yaml")
 # set_lesson("DSC2015/R_Basic_Part_2-Data_Structure_in_R/lesson.yaml")
 # set_lesson("DSC2015/R_Basic_Part_3-Control_Flow/lesson.yaml")
 

@@ -12,6 +12,8 @@ output:
   slidy_presentation:
     toc: true
     number_section: true
+  revealjs::revealjs_presentation:
+    theme: beige
 subtitle: R 101
 ---
 

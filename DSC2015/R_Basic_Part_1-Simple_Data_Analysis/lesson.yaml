@@ -7,94 +7,123 @@
   Version: 0.1
 
 - Class: text
-  Output: R是近年最火紅的資料分析語言，讓我們先來用R做一個簡單的資料分析吧!
+  Output: 剛剛學到了不少指令了吧! 讓我們複習一下囉~
   
 - Class: text
-  Output: R有許多官方套件，這些套件中也有很多現成的資料可使用。
-  
-- Class: text
-  Output: 這次會使用的是R內建的套件MASS，可以用library這個內建指令存取。
+  Output: 如果有任何問題記得舉手問助教。
   
 - Class: cmd_question
-  Output: 試看看鍵入library("MASS")看看吧!
+  Output: 首先，請匯入 MASS 套件。
   CorrectAnswer: library("MASS")
-  AnswerTests: any_of_exprs('library("MASS")', "library('MASS')", "library(MASS)")
-  Hint: 輸入library("MASS")
+  AnswerTests: test_library()
+  Hint: 匯入套件可以使用 library
   
 - Class: text
   Output: Yeah~~ 成功匯入 MASS 套件，現在讓我們來匯入 MASS 中內建的 Boston 資料表。
   
 - Class: cmd_question
-  Output: 使用 data 這個內建函式，可以匯入套件中的資料表。請輸入 data("Boston") 試試看吧!
+  Output: 現在，請把 MASS 中的 Boston 資料表匯入吧!
   CorrectAnswer: data("Boston")
   AnswerTests: any_of_exprs('data("Boston")', "data('Boston')", "data(Boston)")
-  Hint: 輸入data("Boston")
+  Hint: data 函數可以匯入套件中內建的資料。
   
-- Class: cmd_question
-  Output: 使用 View() 來查看匯入的資料表。請輸入 View(Boston)。
-  CorrectAnswer: View(Boston)
-  AnswerTests: omnitest(correctExpr='View(Boston)')
-  Hint: 輸入View(Boston)
-  
-- Class: text
-  Output: 你現在應該看到Boston這個資料表的內容了。嗯....可是好多欄位都不知道是什麼意思呢。
-  
-- Class: cmd_question
-  Output: 沒關係，在R裡可以用?來查詢相關資訊。請鍵入?Boston。
-  CorrectAnswer: ?Boston
-  AnswerTests: omnitest(correctExpr='?Boston')
-  Hint: 輸入?Boston
-  
-- Class: text
-  Output: 有興趣的學員可以繼續研究這些欄位的意義，讓我們先專注在一些小問題吧!
-  
-- Class: text
-  Output: 房價與犯罪率的關係是如何?負相關?正相關?還是....?
-  
-- Class: text
-  Output: 房價又受那些因素影響呢?而影響多大呢?
-  
-- Class: text
-  Output: 當然，直覺上來說應該是負相關，但是抱著To see is to believe的精神，我們希望能用資料證明它!
+- Class: mult_question
+  Output: 如果我想看看 Boston 資料表的"部分內容"，我可以使用下列那一個指令呢?
+  AnswerChoices: View(Boston);head(Boston);str(Boston);summary(Boston)
+  CorrectAnswer: head(Boston)
+  AnswerTests: omnitest(correctVal = "head(Boston)")
+  Hint: head 函數可以用來查看部分資料。
 
-- Class: cmd_question
-  Output: 在 R 裡，這些統計計算是非常容易的。鍵入cor(Boston[, 'crim'], Boston[, 'medv'])。
-  CorrectAnswer: cor(Boston[, 'crim'], Boston[, 'medv'])
-  AnswerTests: any_of_exprs("cor(Boston[, 'crim'], Boston[, 'medv'])", 'cor(Boston[, "crim"], Boston[, "medv"])', "cor(Boston$crim, Boston$medv)")
-  Hint: 請輸入cor(Boston[,'crim'], Boston[,'medv'])
+- Class: mult_question
+  Output: 除了資料內容外，如果想知道 Boston 資料表的結構(例如各欄資料型態)，可以用那一個指令呢?
+  AnswerChoices: View(Boston);head(Boston);str(Boston);summary(Boston)
+  CorrectAnswer: str(Boston)
+  AnswerTests: omnitest(correctVal = "str(Boston)")
+  Hint: str 可用來查看 R 物件的結構。
 
 - Class: text
-  Output: 果然如我們所料，計算出的相關係數是 -0.388 呈現負相關。
-  
-- Class: text
-  Output: 那房價有受其他因素影響嗎? 影響多大呢?
-  
-- Class: text
-  Output: 統計上我們常用線性迴歸來處理這類問題。R中有lm這個內建函式。
-
-- Class: text
-  Output: 譬如說房價與犯罪率、空氣中一氧化氮比例、通勤距離和便利性的關係為例。
-
-- Class: cmd_question
-  Output: 請輸入 fit=lm(medv ~ crim + nox + dis + rad, data = Boston)
-  CorrectAnswer: fit=lm(medv ~ crim + nox + dis + rad, data = Boston)
-  AnswerTests: omnitest("fit=lm(medv ~ crim + nox + dis + rad, data = Boston)")
-  Hint: 請輸入fit=lm(medv ~ crim + nox + dis + rad, data = Boston)
+  Output: 很好! 另外還有 summary 可以用來觀察一些基本統計量，R 還有很多好用的內建函數，我們也來複習一下吧!
   
 - Class: cmd_question
-  Output: 很好! 接下來可以使用 summary 產生簡單的分析結果。請輸入 summary(fit)。
-  CorrectAnswer: summary(fit)
-  AnswerTests: omnitest(correctExpr='summary(fit)')
-  Hint: summary(fit)
+  Output: 譬如說，我們想看看 Boston 中房價 (medv) 的分布狀況，可以使用 table 這個函數，又該怎麼使用呢? 試試看吧!
+  CorrectAnswer: table(Boston$medv)
+  AnswerTests: omnitest('table(Boston$medv)', table(Boston$medv))
+  Hint: 可以使用 ?table 查詢 table 的使用方式喔!
+
+- Class: text
+  Output: 嗯...看來房價最高的就是 50 了，值得拿出來好好看看。
+
+- Class: text
+  Output: 剛剛有教過喔，可以用 subset 來把符合所需條件的資料撈出來，想想該怎麼使用呢?
 
 - Class: cmd_question
-  Output: 對這分析結果好奇嗎? 你可以輸入 play() 來嘗試別種線性模型。結束後用 skip() 繼續。
-  CorrectAnswer: '"TWUseR Rocks"'
-  AnswerTests: omnitest('"TWUseR Rocks"')
-  Hint: 請輸入 skip()
+  Output: 請用 subset 把 Boston 中 medv 為 50 的資料取出，並指定給 Medv_50 這個變數。
+  CorrectAnswer: Medv_50 = subset(Boston, Boston$medv == 50)
+  AnswerTests: test_subset()
+  Hint: 可以使用 ?subset 查詢 subset 的使用方式喔!
+
+- Class: text
+  Output: 太棒了! 接下來可以對 Medv_50 做一些簡單的分析囉!
+  
+- Class: text
+  Output: 譬如說，我們想看看 Medv_50 各欄位的平均與其他資料的各欄位平均的差別...
+  
+- Class: cmd_question
+  Output: 首先，先計算 Medv_50 各欄位的平均吧! R 有個內建函數可以做到這件事喔，還記得嗎? 試試看吧!
+  CorrectAnswer: colMeans(Medv_50)
+  AnswerTests: omnitest("colMeans(Medv_50)")
+  Hint: 試試看 colMeans 吧!
+
+- Class: cmd_question
+  Output: 最後讓我們把 colMeans(Medv_50) 跟 colMeans(Boston) 合併成一個表格好方便看，該怎麼做呢?
+  CorrectAnswer: rbind(colMeans(Medv_50), colMeans(Boston))
+  AnswerTests: omnitest("rbind(colMeans(Medv_50), colMeans(Boston))", rbind(colMeans(Medv_50), colMeans(Boston)))
+  Hint: 還記得 rbind 跟 cbind 吧? 想想該用誰吧!
+
+- Class: text
+  Output: 太棒了! 你簡直是 R 小神童/小仙女!
+
+- Class: text
+  Output: 接下來，讓我們來看看 medv 跟 Boston 其他欄位的關聯性 (correlation)。
+
+- Class: cmd_question
+  Output: 想想看，剛剛有教過喔，試試看吧!
+  CorrectAnswer: cor(Boston$medv, Boston)
+  AnswerTests: omnitest("cor(Boston$medv, Boston)", cor(Boston$medv, Boston))
+  Hint: 可以使用 cor 這個內建函數喔!
+
+- Class: text
+  Output: 另外一個常見的資料分析問題是分類，譬如說把 Boston 中 lstat (所得) 分類。
+
+- Class: cmd_question
+  Output: 試試看把 lstat 這欄資料分成 H (High), M (Middle) 與 L (Low) 三類吧!
+  CorrectAnswer:  cut(Boston$lstat, breaks = 3, label = c("L", "M", "H"))
+  AnswerTests: omnitest('cut(Boston$lstat, breaks = 3, label = c("L", "M", "H"))', cut(Boston$lstat, breaks = 3, label = c("L", "M", "H")))
+  Hint: 還記得 cut 嗎?
+
+- Class: cmd_question
+  Output: 把剛剛算出的結果另外存成 Boston 中 income_class 一欄吧!
+  CorrectAnswer: Boston$income_class = cut(Boston$lstat, breaks = 3, label = c("L", "M", "H"))
+  AnswerTests: test_cut()
+  Hint: A$B = C 可以把 C 指定給 A 中的 B 欄喔
+  
+- Class: text
+  Output: 很好! R 除了處理資料與做一些統計運算很好用外，也有方便的畫圖功能，我們當然不能"漏溝(台)"囉!
+
+- Class: cmd_question
+  Output: 剛剛上課有教過 barplot，還記得嗎? 請使用 barplot 畫出 Boston 資料表中房價一欄的分佈圖吧!
+  CorrectAnswer: barplot(table(Boston$medv))
+  AnswerTests: test_barplot()
+  Hint: 可以使用 ?barplot 來查詢 barplot 的使用方式與範例喔!
+
+- Class: cmd_question
+  Output: 最後，讓我們畫個 pie 圖來看看剛剛分類出的三類所得的比例分佈是長怎樣吧! 該怎麼做呢?
+  CorrectAnswer: pie(table(Boston$income_class))
+  AnswerTests: omnitest("pie(table(Boston$income_class))")
+  Hint: 可以試試 pie 這個內建指令喔!
   
 - Class: text
   Output: 恭喜! 你已經用 R 完成了一次基本的資料分析。
   
 - Class: text
-  Output: 接下來請打開 RBasic Part 2 繼續下面的課程。
+  Output: 接下來請打開 R Basic Part 2-Data Structure in R 繼續下面的課程。
