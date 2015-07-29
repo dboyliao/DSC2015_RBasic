@@ -26,6 +26,10 @@ render("~/Documents/R_scripts/Swirl_Cource/RBasic/slides/dboy.Rmd",
        output_file = "RBasic0.html",
        output_format = "ioslides_presentation")
 
+render("~/Documents/R_scripts/Swirl_Cource/RBasic/slides/ForBasicSharing.Rmd", 
+       output_file = "RBasic1.html",
+       output_format = "ioslides_presentation")
+
 render("~/Documents/R_scripts/Swirl_Cource/RBasic/slides/dboy.Rmd", 
        output_file = "slides/RBasic0.html",
        output_format = "slidy_presentation")
