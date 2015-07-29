@@ -63,9 +63,9 @@
   Output: 接下來是向量，你又記得多少呢? Practice make perfection!
 
 - Class: cmd_question
-  Output: 建立一個 months1 變數，其值為 1 2 3 4 .... 12 的整數向量。
+  Output: 建立一個 months 變數，其值為 1 2 3 4 .... 12 的整數向量。
   CorrectAnswer: months = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-  AnswerTests: test_months()
+  AnswerTests: omnitest("months = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)", c(1:12))
   Hint: 還記得 c 嗎?
 
 - Class: text
@@ -99,7 +99,7 @@
   AnswerTests: omnitest(correctVal = "1 2 1 1")
   Hint: 可以輸入 play() 來做實驗，做完記得用 nxt() 會到 swirl 喔!
 
-- Class: mul_question
+- Class: mult_question
   Output: as.numeric(my_factor) 又會是多少呢?
   AnswerChoices: 1 2 1 1;NA;2 1 2 2
   CorrectAnswer: 2 1 2 2

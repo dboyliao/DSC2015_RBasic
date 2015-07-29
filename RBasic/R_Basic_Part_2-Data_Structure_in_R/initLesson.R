@@ -5,9 +5,9 @@
 rm(list=ls())
 hello <- "Hello"
 world <- "World."
-tenshia <- "天下之事，合久必分分久必合"
+tenshia <- "天下之事,合久必分分久必合"
 puff <- "郭雪芙"
 takeshi <- "金城武"
-month_ans <- c(1:12)
+months_ans <- c(1:12)
 my_vec <- c("1", "2", "1", "1")
 my_factor <- factor(my_vec)
