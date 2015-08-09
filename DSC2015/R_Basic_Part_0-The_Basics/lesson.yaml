@@ -73,10 +73,10 @@
   Output: 接著，可以用簡單的流程控制讓 R 告訴你該去哪一家!
 
 - Class: cmd_question
-  Output: 請輸入 if (A_is_cheaper) print("去 A 家買!") else print("去 B 家買!");
-  CorrectAnswer: if (A_is_cheaper) print("去 A 家買!") else print("去 B 家買!");
-  AnswerTests: omnitest("if (A_is_cheaper) print('去 A 家買!') else print('去 B 家買!')", "去 B 家買!")
-  Hint: 請輸入 if (A_is_cheaper) print("去 A 家買!") else print("去 B 家買!");
+  Output: 請輸入 if (A_is_cheaper) print("A") else print("B");
+  CorrectAnswer: if (A_is_cheaper) print("A") else print("B");
+  AnswerTests: omnitest("if (A_is_cheaper) print('A') else print('B')", "B")
+  Hint: 請輸入 if (A_is_cheaper) print("A") else print("B");
 
 - Class: text
   Output: 計算結果得知，B 肉販比較便宜!
