@@ -114,28 +114,28 @@ subtitle: R 101
 ---
 
 - 簡單總結一下剛剛學會的基本指令。
-- +, -, *, / 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
+- `+`, `-`, `*`, `/` 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
 
 ---
 
 - 簡單總結一下剛剛學會的基本指令。
-- +, -, *, / 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
-- %% 用於求餘數，%/% 用於求商。
+- `+`, `-`, `*`, `/` 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
+- `%%` 用於求餘數，`%/%` 用於求商。
 
 ---
 
 - 簡單總結一下剛剛學會的基本指令。
-- +, -, *, / 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
-- %% 用於求餘數，%/% 用於求商。
-- ^ 用於計算冪級。
+- `+`, `-`, `*`, `/` 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
+- `%%` 用於求餘數，`%/%` 用於求商。
+- `^` 用於計算冪級。
 
 ---
 
 - 簡單總結一下剛剛學會的基本指令。
-- +, -, *, / 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
-- %% 用於求餘數，%/% 用於求商。
-- ^ 用於計算冪級。
-- (Important!) 碰到問題可以用 ? 與 ?? 查詢文件。
+- `+`, `-`, `*`, `/` 可用於一般數值的加減乘除，須注意使用這些運算符於邏輯值的情況。
+- `%%` 用於求餘數，`%/%` 用於求商。
+- `^` 用於計算冪級。
+- <font color=red>(Important!)</font> 碰到問題可以用 `?` 與 `??` 查詢文件。
 
 # What's Next?
 
@@ -146,7 +146,7 @@ subtitle: R 101
 <img src="img/ning.jpg" width=35% height=35%>
 </div>
 
-- Data Structure
+- R Build-in Data Structure
 
 ---
 
@@ -155,8 +155,8 @@ subtitle: R 101
 <img src="img/ning.jpg" width=35% height=35%>
 </div>
 
-- Data Structure
-- Data Analysis
+- R Build-in Data Structure
+- Basic Data Analysis with R
 
 ---
 
@@ -165,14 +165,15 @@ subtitle: R 101
 <img src="img/noah.jpg" width=25% height=25%>
 </div>
 
-- Function
-
----
-
-### Noah
-<div>
-<img src="img/noah.jpg" width=25% height=25%>
-</div>
-
-- Function
 - Control Flow and Exception Handling
+
+---
+
+### Noah
+<div>
+<img src="img/noah.jpg" width=25% height=25%>
+</div>
+
+- Control Flow and Exception Handling
+- Function
+

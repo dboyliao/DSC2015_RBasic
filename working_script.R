@@ -22,22 +22,24 @@ system("zip -r RBasic.zip RBasic")
 delete_progress("dboy")
 swirl()
 
+## Reset swirl
+set_swirl_options(courses_dir = NULL)
+swirl2html() # testing
+getOption('courses_dir')
+
+library("devtools")
+devtools::install_github("swirl", "wush978")
+
+## Dboy
 render("~/Documents/R_scripts/Swirl_Cource/RBasic/slides/dboy.Rmd", 
        output_file = "RBasic0.html",
-       output_format = "ioslides_presentation")
-
-render("~/Documents/R_scripts/Swirl_Cource/RBasic/slides/ForBasicSharing.Rmd", 
-       output_file = "RBasic1.html",
        output_format = "ioslides_presentation")
 
 render("~/Documents/R_scripts/Swirl_Cource/RBasic/slides/dboy.Rmd", 
        output_file = "slides/RBasic0.html",
        output_format = "slidy_presentation")
 
-set_swirl_options(courses_dir = NULL)
-swirl2html() # testing
-getOption('courses_dir')
-
-
-library("devtools")
-devtools::install_github("swirl", "wush978")
+## Ning
+render("~/Documents/R_scripts/Swirl_Cource/RBasic/slides/RBasic1.Rmd", 
+       output_file = "RBasic1.html",
+       output_format = "ioslides_presentation")
