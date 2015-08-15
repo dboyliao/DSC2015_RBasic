@@ -4,7 +4,7 @@ author: "Ning Chen"
 date: '`r Sys.Date()`<br><br><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="img/by-nc-sa-4.0-88x31.png" /></a>'
 output:
   ioslides_presentation:
-    theme: flatly
+    theme: default
     highlight: default
     logo: img/Taiwan-R-logo.png
     widescreen: true
@@ -12,6 +12,634 @@ output:
 subtitle: R 101
 
 ---
+
+<style>
+h2 {
+  font-size: 40px;
+  color: blue;
+}
+span {
+  font-size: 20px;
+}
+</style>
+
+# Why R 
+
+## R: A Brief Intro
+
+- 1976 貝爾實驗室 John Chambers,Rick Becker,Allan Wilks 研發 S 語言
+- 1993 Ross Ihaka and Robert Gentlemen (University of Auckland, New Zealand) 研發 R 語言  
+- R 語言是一種基於 S 語言所發展出具備統計分析, 繪圖與資料視覺化的程式語言  
+- 1997 R 的核心開發團隊 (R development core team) 成立, 專責 R 原始碼的修改與編寫 
+
+---
+
+[Companies Using R](http://www.revolutionanalytics.com/companies-using-r)
+
+<iframe src="http://www.revolutionanalytics.com/companies-using-r" align='middle'></iframe>
+
+# R 與資料測量尺度
+
+---
+
+統計上資料測量的尺度分為以下幾種:
+
+- 名目資料(nomial)
+- 順序資料(ordinal)
+- 區間資料(interval)
+- 比例資料(ratio)
+
+---
+
+| 資料衡量尺度 | 變數形態 |   特性   |     範例     |
+|--------------|----------|----------|--------------|
+|   名目資料   |   質化   |   類別   | 性別、可回收 |
+|   順序資料   |   質化   | 優先順序 |     名次     |
+|   區間資料   |   量化   | 大小距離 |  溫度、時間  |
+|   比例資料   |   量化   |   比值   |  營收、GDP   |
+
+## 名目資料
+
+- 數值只用於記號，**"值"**毫無意義的數據  
+    - 性別
+    - 國家/班級
+
+| 男 | 女 |
+|----|----|
+| 0  |  1 |
+
+|男 | 女 |
+|---|----|
+| 1 | 2  |
+
+## 順序資料
+
+- 數值有順序關係，但是差距沒有意義  
+    - 名次  
+    - 排序表  
+
+第一名的成績一定比第二名好, 但不代表第一名比第二名好兩倍
+
+
+## 區間資料
+
+- 有差距的概念，沒有倍數的概念。  
+- 數值有1的概念，沒有0的概念。可加減。  
+    - 溫度  
+    - 時間
+
+## 比值資料
+
+- 同時有差距和倍數的概念。 
+- 可加減乘除。 
+    - 使用者人數  
+    - 營收
+
+# R 的基本資料結構
+
+---
+
+R 的基本資料結構與剛剛所提到的測量尺度有密切的關係
+
+---
+
+R 的基本資料結構與剛剛所提到的測量尺度有密切的關係
+
+| 測量尺度 | 資料結構 |
+|----------|----------|
+| 名目資料 |  Factor  |
+| 順序資料 |  Factor  |
+| 區間資料 |  Vector  |
+| 比例資料 |  Vector  |
+
+## Vector in R
+
+<div align='center'>
+  <img src=img/Vector.png width=70%/>
+</div>
+
+
+## Vector in R
+
+<div align='center'>
+  <img src=img/Vector.png width=70%/>
+</div>
+<br/>
+
+- 可以使用 `c` 這個內建函數建立向量
+
+```{r, cache=TRUE}
+x = c(1, 2)
+```
+
+
+## 範例: 12月份 
+
+```{r vector, cache=TRUE}
+Month1=c(1,2,3,4,5,6,7,8,9,10,11,12)
+Month2=1:12 # 建立連續向量的簡易寫法
+```
+
+
+## 練習一下
+
+- 用剛剛學會的 `c` 來建立兩個向量, `taipei_temp` 跟 `hengchun_temp` 紀錄兩地氣溫。
+
+台北恆春每月平均溫度
+
+|月份|   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |  10  |  11  |  12  |
+|----|------|------|------|------|------|------|------|------|------|------|------|------| 
+|台北| 16.1 | 16.5 | 18.5 | 21.9 | 25.2 |	27.7 | 29.6 |	29.2 | 27.4 | 24.5 | 21.5 |	17.9 |
+|恆春| 20.7 | 21.4 | 23.2 |	25.2 | 27.0 |	27.9 | 28.4 |	28.1 | 27.4 |	26.3 | 24.3 |	21.7 |
+
+## 練習一下
+
+```{r Temperature, cache=TRUE}
+taipei_temp = c(16.1, 16.5, 18.5, 21.9,	25.2, 27.7,	29.6,	29.2, 27.4, 
+            24.5, 21.5,	17.9)
+hengchun_temp = c(20.7, 21.4, 23.2, 25.2,	27.0,	27.9,	28.4,	28.1,	27.4,	
+              26.3,	24.3,	21.7)
+```
+
+---
+
+- 加上月份名
+
+```{r, cache=TRUE, results='hold'}
+names(taipei_temp) = Month1
+names(hengchun_temp) = Month2
+taipei_temp
+hengchun_temp
+```
+
+
+## Element-by-Element Operation
+
+```{r, cache=TRUE, results='hold'}
+c(1, 2, 3) + c(3, 2, 1)
+```
+
+
+## Element-by-Element Operation
+
+```{r, cache=TRUE, results='hold'}
+c(1, 2, 3) + 1
+```
+
+## Element-by-Element Operation
+
+```{r, cache=TRUE, results='hold'}
+c(1, 2, 3) + 1
+```
+
+![vectorize-plus-before](img/vectorize-plus-before.png)
+
+## Element-by-Element Operation
+
+```{r, cache=TRUE, results='hold'}
+c(1, 2, 3) + 1
+```
+
+![vectorize-plus-before](img/vectorize-plus-before.png)
+![vectorize-plus-after](img/vectorize-plus-after.png)
+
+## 猜猜看
+
+```{r, cache=TRUE, results='hide'}
+guess <- c(1:10) + c(1:2)
+```
+
+- `guess` 會是多少呢?
+
+## 猜猜看
+
+```{r, cache=TRUE, results='hide'}
+guess <- c(1:10) + c(2, 4)
+```
+
+- `guess` 會是多少呢?
+
+```{r, results='hold'}
+guess
+```
+
+
+## 練習看看
+
+```{r, echo=TRUE, cache=TRUE}
+1:3 * 2
+```
+
+## 向量的同質性
+
+Character > Numeric > Integer > Logical
+
+```{r, cache=TRUE}
+x <- c(1, 2, "3")
+class(x)
+x
+```
+
+## 向量的同質性
+
+Character > Numeric > Integer > Logical
+
+```{r, cache=TRUE}
+x <- c(1, 2, "3")
+class(x)
+x
+```
+
+- 向量中的所有元素都必須是同一種型別。
+
+## Factor(常用於處理質性變數)
+
+如何處理名目變數?
+```{r factor-levels normial}
+x <- c("F","M","F","F")
+x
+x <- factor(c("F","M","F","F"), levels=c("F","M"))
+x
+x <- factor(c("F","M","F","F"), levels=c("F"))
+levels(x)
+as.integer(x)
+```
+
+---
+
+### 如何處理順序資料?
+
+```{r factor-levels ordinal}
+#農業社會 男尊女卑
+Argri <- factor(c("F","M","F","F"),order=TRUE,levels=c("F","M"))
+
+#阿美族 女尊男卑
+Amis <- factor(c("F","M","F","F"),order=FALSE,levels=c("F","M"))
+
+#應該要用
+Amis <- factor(c("F","M","F","F"),order=TRUE,levels=c("M","F"))
+```
+
+
+---
+
+```{r}
+#舉一個認真的例子 - 班上一號到六號分別拿到A,B,C的級別
+rank=factor(c("C","A","B","B","C","C"),order=TRUE,level=c("C","B","A"))
+rank
+rank[1]<rank[2]
+
+```
+
+---
+
+### 量性 Integer and Numeric 
+
+`+`
+
+```{r integer-plus}
+1 + 2
+```
+
+`-`
+
+```{r integer-minus}
+1 - 2
+```
+
+`*`
+
+```{r integer-times}
+1 * 2
+```
+
+`/`
+
+```{r integer-divide}
+1L / 2L
+```
+
+---
+
+### 判斷 Logical 
+
+產生自比較，或是使用`T`、`TRUE`、`F`或`FALSE`輸入
+```{r logical-demo1}
+x <- 1
+x < 2
+x <= 1
+```
+
+---
+
+Recape
+
+
+  |"資料衡量尺度" |"變數形態"|"特性"
+ - |- |- |-
+ 1|"名目資料"|"質化"|"類別"
+ 2|"順序資料"|"質化"|"優先順序"
+ 3|"區間資料"|"量化"|"大小距離"
+ 4|"比例資料"|"量化"|"比值"
+
+
+---
+
+## R 的資料結構
+
+---
+
+### Vector 向量式資料結構
+
+---
+
+### 異質性資料 List 
+
+```{r}
+x<-list(1L,2,"3")
+```
+*連函數都吃
+```{r}
+x<-list(1L,2,"3",mean)
+```
+
+---
+
+### 異質性資料 dataframe
+
+View(Boston)
+str(Boston)
+
+---
+
+#### Ways to add a column
+
+Boston$Income<-  
+Boston[["Income"]]<-  
+
+---
+
+#### Ways to remove the column
+
+Boston$Income<-NULL
+Boston[["Income"]]<-NULL
+
+---
+
+#### subset
+
+rbind
+
+```{r,warning=FALSE}
+Serial=c(1,2,3)
+RBasicTeacher=c("Dboy", "Ning", "Noha")
+RBasicRbind=rbind(Serial,RBasicTeacher)
+```
+
+---
+
+cbind
+```{r}
+Serial=c(1,2,3)
+RBasicTeacher=c("Dboy", "Ning", "Noha")
+RBasicCbind=cbind(Serial,RBasicTeacher)
+RBasic=cbind(c(1,2,3),c("Dboy", "Ning", "Noha"))
+```
+
+---
+
+### Merge  
+
+```{r}
+PageView <- read.table(header=TRUE, text='
+     Date       PageView Rating
+           7/1      1231     6.7
+           7/2      5423    4.5
+           7/3      3219    3.7
+           7/4       998    3.3
+           7/5       3241    4.1
+           7/6       1223    5.2')
+Promotion <- read.table(header=TRUE, text='
+     Date       Promotion 
+           7/1      N
+           7/2      Y
+           7/3      Y
+           7/4      N
+           7/5      Y
+           7/6      N   ')
+
+merge(PageView,Promotion,"Date")
+```
+
+---
+
+### 轉換資料結構 
+
+`as`
+
+- `as.character`
+- `as.logical`
+- `as.integer`
+- `as.numeric`
+
+---
+
+```{r as}
+as.numeric("2")
+as.integer("a")
+```
+
+```{r as.character, echo = TRUE}
+x <- c(1, 2, 3, 2, 3, 2, 1)
+as.character(x) # 字串
+factor(x) # ??用剛才dataframe作
+```
+
+---
+
+### 直接轉換
+
+```{r as.numeric, echo = TRUE}
+x <- c("1", "2", "3", "2", "a")
+as.numeric(x)
+```
+
+- `NA`代表Not available，代表著**missing value**
+
+---
+
+## 資料形態的轉換 - 資料清理
+
+---
+
+### 民國80年至82年的國民生產毛額
+
+
+百萬元
+5,023,763
+5,614,679
+6,205,338
+
+
+```{r gdp1, echo = TRUE}
+gdp <- c("5,023,763", "5,614,679", "6,205,338")
+as.numeric(gsub(",", "", gdp))
+```
+
+---
+
+## summary 指令
+
+- 根據資料形態的不同，函數的輸出結果也會不同
+
+---
+
+### Factor
+
+```{r}
+factor_example=factor(c("三年甲班", "三年乙班", "三年甲班"))
+summary(factor_example)
+```
+三年乙班 三年甲班 
+1        2 
+
+---
+
+### Character
+
+```{r}
+character_example=c("a","b","c")
+summary(character_example)
+```
+Length     Class      Mode 
+3       character   character 
+
+---
+
+### List
+
+```{r}
+list_example <- list(1L, 2.0, "3")
+summary(list_example)
+```
+Length Class  Mode     
+[1,] 1      -none- numeric  
+[2,] 1      -none- numeric  
+[3,] 1      -none- character
+
+---
+
+### DataFreame
+
+```{r}
+summary(Boston)
+```
+
+---
+
+## 資料的選取
+
+### 向量的選取
+
+---
+
+#### 坐標
+
+```{r index, echo = TRUE}
+x <- 1:5
+x[2:3]
+```
+
+---
+
+### 布林
+
+```{r boolean_selection, echo = TRUE}
+x <- 1:5
+x > 3
+x[x > 3]
+```
+
+---
+
+## 小挑戰選取台北恆春天氣資料
+
+```{r}
+# 先印出台北跟恆春每個月平均溫度
+TaipeiTem
+HengchunTem
+```
+
+---
+
+# 分別選取出兩地溫度>20度的月份
+
+- "> <"
+```{r}
+TaipeiTem>20
+TaipeiHotMonths = TaipeiTem[TaipeiTem>20]
+```
+- True & False
+```{r}
+SelectMonth= HengchunTem>20
+HengchunHotMonths = HengchunTem[SelectMonth==TRUE]
+```
+
+---
+
+- 找出夏天(七八九月)平均溫度
+    ```{r}
+ TaipeiTem[7:9]
+mean(TaipeiTem[7:9])
+HengchunTem[7:9]
+mean(HengchunTem[7:9])
+    ```
+
+---
+
+- 找出冬天(十二,一,二月)平均溫度
+```{r,error=FALSE}
+# TaipeiTem[1,2,12]
+
+mean(TaipeiTem[c(1,2,12)])
+mean(HengchunTem[c(1,2,12)])
+```
+
+---
+
+## 表格的選取
+
+```{r select_table, echo = TRUE}
+TemTable=rbind(TaipeiTem,HengchunTem)
+TemTable
+#選取台北二月的溫度
+TemTable[1,2]
+#選取二月的溫度
+TemTable[,2]
+TemTable[1,]
+
+```
+
+---
+
+## 欄的選取
+
+```{r select_column, echo = TRUE}
+head(Boston)
+head(Boston[["crim"]]) # head(Boston$crim)
+```
+
+---
+
+## 探索一個變數
+
+### 量化數據
+
+- 敘述統計量：`mean`、`sd`、`median`、`quantile`
+
+### 質化數據
+
+- 分佈表格：`table`
 
 ---
 
@@ -242,7 +870,7 @@ colMeans(MEDVOther)
 - 使用 `rbind` 合併資料表。
 
 ```{r, cache=TRUE}
-rbind(colMeans(Boston),colMeans(MEDV50))
+rbind(colMeans(Boston),colMeans(MEDVhight))
 ```
 
 ---
@@ -562,3 +1190,65 @@ x
 ```{r, cache=TRUE}
 head(Boston)
 ```
+
+## R 的資料形別
+
+- 字元 / 字串
+- 整數 / 浮點數
+
+## Character
+
+- 最廣泛的資料結構，可用於處理文字相關的工作，如：設定圖片的標題
+- 輸入的時候利用`"`或`'`來包覆要輸入的文字
+
+---
+
+### 常用的Character處理函數
+
+字串的剪接：`paste
+```{r}
+x <- "abc";y <- "dbbbe"
+paste(x, y, sep=",")
+```
+
+字串的切割：`strsplit`
+```{r}
+strsplit(x, "b")
+```
+
+截取子字串：`substring`
+```{r}
+name1<-"郭雪芙"
+substring(name1, 1, 1)
+```
+
+---
+
+練習一下 取出金城武的姓
+
+```{r}
+name2<-"金城武"
+substring(name2, 1, 2)
+```
+
+# 補充資料
+
+---
+
+- [Swirl Courses](https://github.com/swirldev/swirl_courses)  
+- [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) (around 4 hours) 
+- [Cookbook for R](http://www.cookbook-r.com/)
+
+# Acknowlege
+
+---
+
+- Wush
+
+![Wush](img/wush.jpg)
+
+---
+
+- 智程
+
+![Chi-Cheng](https://avatars1.githubusercontent.com/u/3391420?v=3&s=400)
