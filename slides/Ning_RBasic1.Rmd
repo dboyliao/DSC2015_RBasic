@@ -1,0 +1,919 @@
+---
+title: "R Basic-DataStructure"
+author: "NingChen"
+output:
+  revealjs::revealjs_presentation
+
+---
+
+<style>
+.reveal pre code {
+  background:white;
+  color: black;
+}
+
+.reveal pre code span {
+  color: black;
+  font-weight: normal;
+}
+
+div.hidecode + pre + pre {display: none}
+</style>
+<script>
+doclick=function(e){
+  var elem = e.nextSibling.nextSibling.nextSibling.nextSibling;
+  if(elem.style.display=="none"){
+    elem.style.display="block";
+  }else{
+    elem.style.display="none";
+  }
+}
+</script>
+
+
+# WhyR 
+
+---
+
+## R?
+
+- 1976 貝爾實驗室John Chambers,Rick Becker,Allan Wilks研發S語言
+- 1993 Ross Ihaka and Robert Gentlemen,University of Auckland, New Zealand 研發R語言  
+- R語言是一種基於S語言所發展出具備統計分析,繪圖與資料視覺化的程式語言  
+- 1997 R的核心開發團隊(R development core team)成立,專責R原始碼的修改與編寫  
+
+---
+
+[Companies Using R](http://www.revolutionanalytics.com/companies-using-r)
+
+
+---
+
+
+![USALandCollect](img/Boston.png)
+
+---
+
+- 你沒看錯，今天其實是投資說明會，教你買地!
+- 等等我們會用 R 來根據資料分析一下，看看怎樣的地才是好地 (地價高) 呢?
+
+- R 有很多套件，裡面會有很多內建的資料集可以使用。
+- 這次我們要使用的是 `MASS` 這個套件中的 `Boston` 資料集。
+
+
+```{r,eval=TRUE}
+library(MASS)
+#介紹引入套件
+data(Boston)
+```
+
+---
+
+### 看看有甚資料
+
+- `head` 會列出"頭" 6 筆資料。
+
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r}
+head(Boston)
+```
+
+---
+
+你也可以使用head(),Tail(),summary(),str()
+
+---
+
+## Boston Dataset有哪些Variables
+
+Column Name | 中文 | Column Name | 中文
+- | - | - | -
+crim | 犯罪率 | dis | weighted mean of distances to five Boston employment centres距離上班商業中心地點的英哩數
+zn | 住宅區比例 | rad | index of accessibility to radial highways.可到最近的主要高速公路網路的便利指標
+indus | 工業區比例 | Tax|full-value property-tax rate per \$10,000.房屋與土地相關的 Tax 比例
+chas | Charles River dummy variable | ptratio | pupil-teacher ratio by town 平均學生vs教師比例
+nox | 空氣中的一氧化氮比例(ppm)nitrogen oxides concentration (parts per 10 million). | black | 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town.非洲裔人口比例
+Rooms | 平均每戶的房間數目 | lstat | lower status of the population (percent).低收入戶比例
+age | proportion of owner-occupied units built prior to 1940.1940年前所建的自宅比例 | medv | median value of owner-occupied homes in \$1000s.自有住宅房價中位數
+
+---
+
+## 哪些因素跟房價有相關?
+
+```{r}
+#解釋1非常正相關 -1是非常負相關
+cor(Boston$medv,Boston)
+```
+
+---
+
+R也可以讓你用圖來看各欄位跟房價之間的關聯度
+
+```{r}
+barplot(cor(Boston$medv,Boston))
+
+```
+
+---
+
+####我們可以知道...
+
+房價與房間數是正相關,與低收入戶比例負相關
+
+---
+
+##### 我們再來畫畫圖看房間數跟房價關係
+
+---
+
+房間數跟房價關係
+
+```{r, echo=FALSE}
+
+plot(Boston$rm,Boston$medv)
+#x軸為房間數 y軸為房價
+LM=lm(Boston$medv~Boston$rm)
+#找出線性關係
+abline(LM,col=2)
+#畫出圖
+
+```
+
+---
+
+
+### 小練習 房間數與房價的關係
+
+---
+
+###  現在我們知道
+
+相關性 -> 房價跟房間數正相關,低收入戶多寡負相關
+(我們還畫幾張圖來看)
+
+---
+
+## 都能出國買房,買地要買就是要買最好的 最貴的
+
+
+---
+
+### 我要怎定義豪宅
+
+找出前 5% (10%) 的房價
+
+```{r}
+quantile(Boston$medv, probs = c(0.95, 0.9))
+```
+
+---
+
+#### 房價分布圖
+
+- 使用 `hist` 做出房價的柱狀圖。
+
+```{r}
+hist(Boston$medv,breaks=20)
+```
+
+---
+
+#### 房價分布圖
+
+- 使用 `hist` 做出房價的柱狀圖。
+- 使用 `abline` 標示出剛剛計算的前 5% 高的房價位置。
+
+```{r}
+hist(Boston$medv, breaks = 20)
+abline(v = 43.4, col="red")
+```
+
+---
+
+#### 高房價與其他是否有差異
+
+- 前 5% 的房子的各項平均與其他房子是否有差異?
+- 用 R 簡單計算來看看!
+
+---
+
+##### 平均-高房價與其他是否有差異
+
+- 使用 `subset` 做分群。
+
+```{r}
+MEDVhight = subset(Boston,Boston$medv>=43.4)
+MEDVOther = subset(Boston,Boston$medv< 43.4)
+# MEDVhight 為房價高的資料
+# MEDVOther 其他資料
+```
+
+---
+
+##### 平均-高房價與其他是否有差異
+
+- 使用 `colMeans` 計算各欄位平均。
+
+```{r}
+colMeans(MEDVhight)
+```
+
+```{r}
+colMeans(MEDVOther)
+```
+ 
+---
+
+- 使用 `rbind` 合併資料表。
+
+```{r}
+rbind(colMeans(MEDVhight),colMeans(MEDVOther))
+```
+
+高房價區 犯罪率較低 工業區較少 住宅區比例高
+
+
+
+
+---
+
+#### 我們現在知道～～
+
+1. 平均數 rbind->富裕區 犯罪率較低 工業區較少 住宅區比例高
+2. 相關性 -> 房價跟房間數正相關,低收入戶多寡負相關   
+  
+
+---
+
+
+## 高房價區 低收入戶多寡分佈
+
+我們可以嘗試將低收入戶分類
+
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r}
+Boston2=Boston
+Boston2$Income=cut(Boston2$lstat,breaks=3)
+#將低收入戶比例分成三區
+Boston2$Income
+```
+
+---
+
+也許用文字來看更清楚
+
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r}
+Boston2$Income= cut(Boston2$lstat,breaks=3,labels=c("H","M","L"))
+MEDVhight2 = subset(Boston2,Boston$medv>=43.4)
+MEDVhight2$Income
+```
+
+---
+
+我可以計算有多少"H"嗎?
+
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r}
+table(MEDVhight2$Income)
+```
+
+---
+## 練習 來算算其他區域的狀況
+
+---
+
+## Recape
+
+- 平均數 rbind->富裕區 犯罪率較低 工業區較少 住宅區比例高
+- 相關性 -> 房價跟房間數正相關,低收入戶多寡負相關
+
+---
+
+take a rest
+
+
+
+---
+
+## 我們來回顧剛剛研究的dataset
+
+```{r}
+str(Boston2)
+```
+
+
+---
+
+# 我們所分析的數據代表什麼意義？
+
+---
+
+## 先來介紹 Vector 向量
+
+---
+
+try
+```{r}
+x=1 
+```
+how to input more than length=1 ?
+
+
+x=1,2
+
+---
+
+Failed? Why?
+
+---
+
+我要輸入12月份
+```{r vector}
+Month1=c(1,2,3,4,5,6,7,8,9,10,11,12)
+length(Month1)
+Month2=1:12
+length(Month2)
+```
+
+---
+
+## 練習一下
+
+台北恆春每月平均溫度
+
+月份 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 
+- |- | - | - | - | - | - | - | - | - | - | - | - 
+台北 | 16.1 | 16.5 |  18.5 |  21.9 |	25.2 |	27.7 |	29.6 |	29.2 |	27.4 | 24.5 |	21.5 |	17.9
+恆春 | 20.7 | 21.4 | 23.2 |	25.2 |	27.0 |	27.9 |	28.4 |	28.1 |	27.4 |	26.3 |	24.3 |	21.7
+
+---
+
+```{r Temperature}
+TaipeiTem=c(16.1,16.5,18.5 ,	21.9 ,	25.2 ,	27.7 ,	29.6 ,	29.2,27.4,24.5 ,	21.5 ,	17.9)
+HengchunTem=c(20.7 , 21.4 , 23.2 ,  25.2 ,	27.0 ,	27.9 ,	28.4 ,	28.1 ,	27.4 ,	26.3 ,	24.3 ,	21.7)
+```
+
+---
+
+加上月份
+
+```{r}
+names(TaipeiTem)=Month1
+names(HengchunTem)=Month2
+```
+
+---
+
+
+```{r, echo=TRUE}
+1:3
+
+
+```
+
+---
+
+```{r}
+c(1, 2, 3) + 1
+```
+
+
+
+![vectorize-plus-before](img/vectorize-plus-before.png)
+![vectorize-plus-after](img/vectorize-plus-after.png)
+
+---
+
+## 練習看看
+
+```{r, echo=TRUE}
+1:3 * 2
+```
+
+---
+
+### 向量有同質性 Vector 
+
+Character > Numeric > Integer > Logical
+```{r homogenous,eval=FALSE}
+x <- c(1L, 2.0, "3")
+class(x)
+x
+```
+* 改一個，全部就都變了
+
+---
+
+## 統計上資料測量的尺度
+
+---
+
+ 統計上資料測量的尺度
+
+- 名目資料(nomial)
+- 順序資料(ordinal)
+- 區間資料(interval)
+- 比例資料(ratio)
+
+---
+
+  |"資料衡量尺度" |"變數形態"|"特性"
+ - |- |- |-
+ 1|"名目資料"|"質化"|"類別"
+ 2|"順序資料"|"質化"|"優先順序"
+ 3|"區間資料"|"量化"|"大小距離"
+ 4|"比例資料"|"量化"|"比值"
+
+---
+
+### 名目資料
+
+數值只用於記號，"值"毫無意義的數據  
+
+- 性別
+- 國家/班級
+
+
+
+男  | 女
+------------- | -------------
+0  | 1
+
+男  | 女
+------------- | -------------
+1  | 2
+
+---
+
+### 順序資料
+
+數值有順序關係，但是差距沒有意義  
+- 名次  
+- 排序表  
+第一名的成績一定比第二名好,但不代表第一名比第二名好兩倍
+
+---
+
+### 區間資料
+
+有差距的概念，沒有倍數的概念。  
+數值有1的概念，沒有0的概念。可加減。  
+- 溫度  
+- 時間
+
+---
+
+### 比值資料
+
+同時有差距和倍數的概念。 
+可加減乘除。 
+
+- 使用者人數  
+- 營收
+
+---
+
+## R 的資料形態分類
+
+---
+
+### Character
+
+- 最廣泛的資料結構，可用於處理文字相關的工作，如：設定圖片的標題
+- 輸入的時候利用`"`或`'`來包覆要輸入的文字
+
+---
+
+### 常用的Character處理函數
+
+字串的剪接：`paste
+```{r}
+x <- "abc";y <- "dbbbe"
+paste(x, y, sep=",")
+```
+
+字串的切割：`strsplit`
+```{r}
+strsplit(x, "b")
+```
+
+截取子字串：`substring`
+```{r}
+name1<-"郭雪芙"
+substring(name1, 1, 1)
+```
+
+---
+
+練習一下 取出金城武的姓
+
+```{r}
+name2<-"金城武"
+substring(name2, 1, 2)
+```
+
+---
+
+### Factor(常用於處理質性變數)
+
+如何處理名目變數?
+```{r factor-levels normial}
+x <- c("F","M","F","F")
+x
+x <- factor(c("F","M","F","F"), levels=c("F","M"))
+x
+x <- factor(c("F","M","F","F"), levels=c("F"))
+levels(x)
+as.integer(x)
+```
+
+---
+
+### 如何處理順序資料?
+
+```{r factor-levels ordinal}
+#農業社會 男尊女卑
+Argri <- factor(c("F","M","F","F"),order=TRUE,levels=c("F","M"))
+
+#阿美族 女尊男卑
+Amis <- factor(c("F","M","F","F"),order=FALSE,levels=c("F","M"))
+
+#應該要用
+Amis <- factor(c("F","M","F","F"),order=TRUE,levels=c("M","F"))
+```
+
+
+---
+
+```{r}
+#舉一個認真的例子 - 班上一號到六號分別拿到A,B,C的級別
+rank=factor(c("C","A","B","B","C","C"),order=TRUE,level=c("C","B","A"))
+rank
+rank[1]<rank[2]
+
+```
+
+---
+
+### 量性 Integer and Numeric 
+
+`+`
+
+```{r integer-plus}
+1 + 2
+```
+
+`-`
+
+```{r integer-minus}
+1 - 2
+```
+
+`*`
+
+```{r integer-times}
+1 * 2
+```
+
+`/`
+
+```{r integer-divide}
+1L / 2L
+```
+
+---
+
+### 判斷 Logical 
+
+產生自比較，或是使用`T`、`TRUE`、`F`或`FALSE`輸入
+```{r logical-demo1}
+x <- 1
+x < 2
+x <= 1
+```
+
+---
+
+Recape
+
+
+  |"資料衡量尺度" |"變數形態"|"特性"
+ - |- |- |-
+ 1|"名目資料"|"質化"|"類別"
+ 2|"順序資料"|"質化"|"優先順序"
+ 3|"區間資料"|"量化"|"大小距離"
+ 4|"比例資料"|"量化"|"比值"
+
+
+---
+
+## R 的資料結構
+
+---
+
+### Vector 向量式資料結構
+
+---
+
+### 異質性資料 List 
+
+```{r}
+x<-list(1L,2,"3")
+```
+*連函數都吃
+```{r}
+x<-list(1L,2,"3",mean)
+```
+
+---
+
+### 異質性資料 dataframe
+
+View(Boston)
+str(Boston)
+
+---
+
+#### Ways to add a column
+
+Boston$Income<-  
+Boston[["Income"]]<-  
+
+---
+
+#### Ways to remove the column
+
+Boston$Income<-NULL
+Boston[["Income"]]<-NULL
+
+---
+
+#### subset
+
+rbind
+
+```{r,warning=FALSE}
+Serial=c(1,2,3)
+RBasicTeacher=c("Dboy", "Ning", "Noha")
+RBasicRbind=rbind(Serial,RBasicTeacher)
+```
+
+---
+
+cbind
+```{r}
+Serial=c(1,2,3)
+RBasicTeacher=c("Dboy", "Ning", "Noha")
+RBasicCbind=cbind(Serial,RBasicTeacher)
+RBasic=cbind(c(1,2,3),c("Dboy", "Ning", "Noha"))
+```
+
+---
+
+### Merge  
+
+```{r}
+PageView <- read.table(header=TRUE, text='
+     Date       PageView Rating
+           7/1      1231     6.7
+           7/2      5423    4.5
+           7/3      3219    3.7
+           7/4       998    3.3
+           7/5       3241    4.1
+           7/6       1223    5.2')
+Promotion <- read.table(header=TRUE, text='
+     Date       Promotion 
+           7/1      N
+           7/2      Y
+           7/3      Y
+           7/4      N
+           7/5      Y
+           7/6      N   ')
+
+merge(PageView,Promotion,"Date")
+```
+
+---
+
+### 轉換資料結構 
+
+`as`
+
+- `as.character`
+- `as.logical`
+- `as.integer`
+- `as.numeric`
+
+---
+
+```{r as}
+as.numeric("2")
+as.integer("a")
+```
+
+```{r as.character, echo = TRUE}
+x <- c(1, 2, 3, 2, 3, 2, 1)
+as.character(x) # 字串
+factor(x) # ??用剛才dataframe作
+```
+
+---
+
+### 直接轉換
+
+```{r as.numeric, echo = TRUE}
+x <- c("1", "2", "3", "2", "a")
+as.numeric(x)
+```
+
+- `NA`代表Not available，代表著**missing value**
+
+---
+
+## 資料形態的轉換 - 資料清理
+
+---
+
+### 民國80年至82年的國民生產毛額
+
+
+百萬元
+5,023,763
+5,614,679
+6,205,338
+
+
+```{r gdp1, echo = TRUE}
+gdp <- c("5,023,763", "5,614,679", "6,205,338")
+as.numeric(gsub(",", "", gdp))
+```
+
+---
+
+## summary 指令
+
+- 根據資料形態的不同，函數的輸出結果也會不同
+
+---
+
+### Factor
+
+```{r}
+factor_example=factor(c("三年甲班", "三年乙班", "三年甲班"))
+summary(factor_example)
+```
+三年乙班 三年甲班 
+1        2 
+
+---
+
+### Character
+
+```{r}
+character_example=c("a","b","c")
+summary(character_example)
+```
+Length     Class      Mode 
+3       character   character 
+
+---
+
+### List
+
+```{r}
+list_example <- list(1L, 2.0, "3")
+summary(list_example)
+```
+Length Class  Mode     
+[1,] 1      -none- numeric  
+[2,] 1      -none- numeric  
+[3,] 1      -none- character
+
+---
+
+### DataFreame
+
+```{r}
+summary(Boston)
+```
+
+---
+
+## 資料的選取
+
+### 向量的選取
+
+---
+
+#### 坐標
+
+```{r index, echo = TRUE}
+x <- 1:5
+x[2:3]
+```
+
+---
+
+### 布林
+
+```{r boolean_selection, echo = TRUE}
+x <- 1:5
+x > 3
+x[x > 3]
+```
+
+---
+
+## 小挑戰選取台北恆春天氣資料
+
+```{r}
+# 先印出台北跟恆春每個月平均溫度
+TaipeiTem
+HengchunTem
+```
+
+---
+
+# 分別選取出兩地溫度>20度的月份
+
+- "> <"
+```{r}
+TaipeiTem>20
+TaipeiHotMonths = TaipeiTem[TaipeiTem>20]
+```
+- True & False
+```{r}
+SelectMonth= HengchunTem>20
+HengchunHotMonths = HengchunTem[SelectMonth==TRUE]
+```
+
+---
+
+- 找出夏天(七八九月)平均溫度
+    ```{r}
+ TaipeiTem[7:9]
+mean(TaipeiTem[7:9])
+HengchunTem[7:9]
+mean(HengchunTem[7:9])
+    ```
+
+---
+
+- 找出冬天(十二,一,二月)平均溫度
+```{r,error=FALSE}
+# TaipeiTem[1,2,12]
+
+mean(TaipeiTem[c(1,2,12)])
+mean(HengchunTem[c(1,2,12)])
+```
+
+---
+
+## 表格的選取
+
+```{r select_table, echo = TRUE}
+TemTable=rbind(TaipeiTem,HengchunTem)
+TemTable
+#選取台北二月的溫度
+TemTable[1,2]
+#選取二月的溫度
+TemTable[,2]
+TemTable[1,]
+
+```
+
+---
+
+## 欄的選取
+
+```{r select_column, echo = TRUE}
+head(Boston)
+head(Boston[["crim"]]) # head(Boston$crim)
+```
+
+---
+
+## 探索一個變數
+
+### 量化數據
+
+- 敘述統計量：`mean`、`sd`、`median`、`quantile`
+
+### 質化數據
+
+- 分佈表格：`table`
+
+---
+
+# 補充資料
+- Swirls  
+- Introduction to R(around 4 hours)  
+https://www.datacamp.com/courses/free-introduction-to-r  
+- Cookbook for R
+
+---
+
+# Acknowlege
+
+DBoy,Wush,智程

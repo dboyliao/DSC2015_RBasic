@@ -92,25 +92,25 @@
 
 
 - Class: cmd_question
-  Output: "!(NOT)，可對邏輯值取負，或是表達不等於 (!=)，試試輸入 is_lower = !is_higher 吧!"
-  CorrectAnswer: is_shorter = !is_taller
-  AnswerTests: omnitest("is_lower = !is_higher", TRUE)
-  Hint: 請輸入 is_shorter = !is_taller
+  Output: "!(NOT)，可對邏輯值取負，或是表達不等於 (!=)，試試輸入 is_shorter = !is_higher 吧!"
+  CorrectAnswer: is_shorter = !is_higher
+  AnswerTests: omnitest("is_shorter = !is_higher", TRUE)
+  Hint: 請輸入 is_shorter = !is_higher
 
 - Class: text
   Output: R 裡也有許多內建的運算符，例如 + (加法), - (減法), * (乘法) 與 / (除法) 。
 
 - Class: cmd_question
-  Output: "猜猜看! is_lower + is_lower 會等於多少呢? 請輸入結果。"
+  Output: "猜猜看! is_shorter + is_shorter 會等於多少呢? 請輸入結果。"
   CorrectAnswer: 2
   AnswerTests: omnitest("2")
-  Hint: 試著輸入 is_lower + is_lower 吧! 知道答案後請直接輸入答案喔!
+  Hint: 試著輸入 is_shorter + is_shorter 吧! 知道答案後請直接輸入答案喔!
 
 - Class: text
   Output: 沒錯! 邏輯值如果用於一般的運算，R 會把 TRUE 當成 1 ，FALSE 當成 0 。
   
 - Class: text
-  Output: 所以 is_lower + is_lower 就變成 TRUE + TRUE = 2 了!
+  Output: 所以 is_shorter + is_shorter 就變成 TRUE + TRUE = 2 了!
   
 - Class: text
   Output: 最後，讓我們來看看其他 R 的內建運算子像是 %% (餘數), %/% (求商) 與 ^ (冪次)。
