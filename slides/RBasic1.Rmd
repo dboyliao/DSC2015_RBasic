@@ -688,7 +688,6 @@ x
 - 向量中的所有元素都必須是同一種型別。
 
 
-
 ---
 
 R 的基本資料結構與剛剛所提到的測量尺度有密切的關係
@@ -708,14 +707,20 @@ R 的基本資料結構與剛剛所提到的測量尺度有密切的關係
 ## Factor(常用於處理質性)
 
 如何處理名目變數?
-```{r factor-levels normial}
+```{r factor and Vector}
 x <- c("F","M","F","F")
 x
 x <- factor(c("F","M","F","F"), levels=c("F","M"))
 x
+as.integer(x)
+```
+
+---
+
+```{r factor NA Message}
+levels(x)
 x <- factor(c("F","M","F","F"), levels=c("F"))
 levels(x)
-as.integer(x)
 ```
 
 ---
@@ -744,44 +749,6 @@ rank[1]<rank[2]
 
 ```
 
----
-
-### 量性 Integer and Numeric 
-
-`+`
-
-```{r integer-plus}
-1 + 2
-```
-
-`-`
-
-```{r integer-minus}
-1 - 2
-```
-
-`*`
-
-```{r integer-times}
-1 * 2
-```
-
-`/`
-
-```{r integer-divide}
-1L / 2L
-```
-
----
-
-### 判斷 Logical 
-
-產生自比較，或是使用`T`、`TRUE`、`F`或`FALSE`輸入
-```{r logical-demo1}
-x <- 1
-x < 2
-x <= 1
-```
 
 ---
 
