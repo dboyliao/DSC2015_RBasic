@@ -70,7 +70,7 @@ span {
 
 讓我們用R先來玩個資料吧～～
 
-![USALandCollect](~/img/Boston.png)
+![USALandCollect](img/Boston.png)
 
 ---
 
@@ -187,12 +187,291 @@ kable(summary(Boston[,c("lstat", "medv")]))
 
 ---
 
+哪些因素(欄位)影響房價??
+
+---
+
+## 尋找相關性 cor()
+```{r}
+#解釋1非常正相關 -1是非常負相關
+cor(Boston$medv,Boston)
+```
+<br>
+<br>
+<br>
+<div class="variable">
+關聯性
+cor(x, y)
+</div>
+
+---
+
+你用圖來看各欄位跟房價之間的關聯度
+
+```{r}
+barplot(cor(Boston$medv,Boston))
+
+```
+<br>
+<br>
+<br>
+<div class="variable">
+長條圖
+barplot()
+</div>
+
+
+---
+
+####我們可以知道...
+
+房價與房間數是正相關,與低收入戶比例負相關
+
+---
+
+房間數跟房價關係
+
+```{r, echo=FALSE}
+
+plot(Boston$rm,Boston$medv)
+#x軸為房間數 y軸為房價
+LM=lm(Boston$medv~Boston$rm)
+#找出線性關係
+abline(LM,col=2)
+#畫出圖
+
+```
+<br>
+<br>
+<br>
+<div class="variable">
+畫圖 
+plot(x,y)
+
+線性模型(二元一次方程式,線性迴歸....)
+lm(y~x)
+
+在plot上加直線
+abline(x,col=)
+</div>
+
 
 
 
 
 ---
 
+
+### 小練習 房間數與房價的關係
+
+
+---
+
+###  現在我們知道
+
+- 相關性 cor() -> 房價跟房間數正相關,低收入戶多寡負相關
+- plot(), barplot() -> 我們還會畫圖
+
+---
+
+---
+
+## 都能出國買房,買地要買就是要買最好的 最貴的
+
+
+---
+
+### 我要怎定義豪宅
+
+找出前 5% (10%) 的房價
+
+```{r}
+quantile(Boston$medv, probs = c(0.95, 0.9))
+```
+<br>
+<br>
+<br>
+<div class="variable">
+百分位數點
+quantile(x, probs=)
+</div>
+
+
+
+---
+
+#### 房價分布圖
+
+- 使用 `hist` 做出房價的柱狀圖。
+
+```{r}
+hist(Boston$medv,breaks=20)
+```
+<br>
+<br>
+<br>
+<div class="variable">
+柱狀圖
+hist(x,breaks= )
+breaks:分成幾類
+
+</div>
+
+
+---
+
+#### 房價分布圖
+
+- 使用 `hist` 做出房價的柱狀圖。
+- 使用 `abline` 標示出剛剛計算的前 5% 高的房價位置。
+
+```{r}
+hist(Boston$medv, breaks = 20)
+abline(v = 43.4, col="red")
+```
+<br>
+<br>
+<br>
+<div class="variable">
+柱狀圖
+hist(x,breaks= )
+breaks:分成幾類
+
+在plot上加直線
+abline(x,col=)
+</div>
+---
+
+#### 高房價與其他是否有差異
+
+- 前 5% 的房子的各項平均與其他房子是否有差異?
+- 用 R 簡單計算來看看!
+
+---
+
+##### 平均-高房價與其他是否有差異
+
+- 使用 `subset` 做分群。
+
+```{r}
+MEDVhight = subset(Boston,Boston$medv>=43.4)
+MEDVOther = subset(Boston,Boston$medv< 43.4)
+# MEDVhight 為房價高的資料
+# MEDVOther 其他資料
+```
+<br>
+<br>
+<br>
+<div class="variable">
+選取資料
+subset(x,condition)
+</div>
+---
+
+##### 平均-高房價與其他是否有差異
+
+- 使用 `colMeans` 計算各欄位平均。
+
+```{r}
+colMeans(MEDVhight)
+```
+
+```{r}
+colMeans(MEDVOther)
+```
+<br>
+<br>
+<br>
+<div class="variable">
+欄平均
+colMeans()
+</div>
+---
+
+- 使用 `rbind` 合併資料表。
+
+```{r}
+rbind(colMeans(MEDVhight),colMeans(MEDVOther))
+```
+
+高房價區 犯罪率較低 工業區較少 住宅區比例高
+<br>
+<br>
+<br>
+<div class="variable">
+Row Bind
+rbind(row1,row2)
+</div>
+
+
+---
+
+#### 我們現在知道～～
+
+1. 平均數 rbind->富裕區 犯罪率較低 工業區較少 住宅區比例高
+2. 相關性 -> 房價跟房間數正相關,低收入戶多寡負相關   
+  
+
+---
+
+#### 我們現在知道～～
+
+1. 平均數 rbind->富裕區 犯罪率較低 工業區較少 住宅區比例高
+2. 相關性 -> 房價跟房間數正相關,低收入戶多寡負相關   
+  
+
+---
+
+
+## 高房價區 低收入戶多寡分佈
+
+我們可以嘗試將低收入戶分類
+
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r}
+Boston2=Boston
+Boston2$Income=cut(Boston2$lstat,breaks=3)
+#將低收入戶比例分成三區
+Boston2$Income
+```
+
+---
+
+也許用文字來看更清楚
+
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r}
+Boston2$Income= cut(Boston2$lstat,breaks=3,labels=c("H","M","L"))
+MEDVhight2 = subset(Boston2,Boston$medv>=43.4)
+MEDVhight2$Income
+```
+
+---
+
+我可以計算有多少"H"嗎?
+
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r}
+table(MEDVhight2$Income)
+```
+
+
+---
+
+# take a rest
+
+
+
+---
+
+## 我們來回顧剛剛研究的dataset
+
+```{r}
+str(Boston2)
+```
+
+
+---
 
 # R 與資料測量尺度
 
@@ -209,7 +488,7 @@ kable(summary(Boston[,c("lstat", "medv")]))
 
 | 資料衡量尺度 | 變數形態 |   特性   |     範例     |
 |--------------|----------|----------|--------------|
-|   名目資料   |   質化   |   類別   | 性別、可回收 |
+|   名目資料   |   質化   |   類別   | 性別、縣市、國家 |
 |   順序資料   |   質化   | 優先順序 |     名次     |
 |   區間資料   |   量化   | 大小距離 |  溫度、時間  |
 |   比例資料   |   量化   |   比值   |  營收、GDP   |
@@ -398,7 +677,7 @@ x
 
 ## 向量的同質性
 
-Character > Numeric > Integer > Logical
+Character > Numeric  > Logical
 
 ```{r, cache=TRUE}
 x <- c(1, 2, "3")
@@ -407,6 +686,23 @@ x
 ```
 
 - 向量中的所有元素都必須是同一種型別。
+
+
+
+---
+
+R 的基本資料結構與剛剛所提到的測量尺度有密切的關係
+
+| 測量尺度 | 資料結構 |
+|----------|----------|
+| 名目資料 |  Factor  |
+| 順序資料 |  Factor  |
+| 區間資料 |  Vector  |
+| 比例資料 |  Vector  |
+
+---
+
+
 
 ## Factor(常用於處理質性變數)
 
@@ -501,7 +797,7 @@ Recape
 
 ---
 
-## R 的資料結構
+## 
 
 ---
 
