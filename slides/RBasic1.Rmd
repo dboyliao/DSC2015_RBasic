@@ -14,6 +14,34 @@ subtitle: R 101
 ---
 
 <style>
+.reveal pre code {
+  background:white;
+  color: black;
+}
+
+.reveal pre code span {
+  color: black;
+  font-weight: normal;
+}
+
+.variable{
+  color: gray;
+}
+
+div.hidecode + pre + pre {display: none}
+</style>
+<script>
+doclick=function(e){
+  var elem = e.nextSibling.nextSibling.nextSibling.nextSibling;
+  if(elem.style.display=="none"){
+    elem.style.display="block";
+  }else{
+    elem.style.display="none";
+  }
+}
+</script>
+
+<style>
 h2 {
   font-size: 40px;
   color: blue;
@@ -23,9 +51,9 @@ span {
 }
 </style>
 
-# Why R 
 
-## R: A Brief Intro
+
+## R: A Brief Introduction
 
 - 1976 貝爾實驗室 John Chambers,Rick Becker,Allan Wilks 研發 S 語言
 - 1993 Ross Ihaka and Robert Gentlemen (University of Auckland, New Zealand) 研發 R 語言  
@@ -37,6 +65,129 @@ span {
 [Companies Using R](http://www.revolutionanalytics.com/companies-using-r)
 
 <iframe src="http://www.revolutionanalytics.com/companies-using-r" align='middle'></iframe>
+
+---
+
+讓我們用R先來玩個資料吧～～
+
+![USALandCollect](~/img/Boston.png)
+
+---
+
+- 你沒看錯，今天其實是投資說明會，教你買地!
+- R 有很多套件，裡面會有很多內建的資料集可以使用。
+- 這次我們要使用的是 `MASS` 這個套件中的 `Boston` 資料集。
+
+---
+
+
+```{r,eval=TRUE}
+library(MASS)
+#介紹引入套件
+data(Boston)
+Boston=subset(Boston,,-c(zn,chas,black,rad,ptratio,age,nox,tax))
+#刪減欄位
+```
+<br>
+<br>
+<br>
+<br>  
+<div class="variable">
+* 引入套件  
+    + library(套件名稱)  
+* 引入套件中的資料集  
+    + data(資料集名稱) 
+
+</div>
+
+---
+
+## 如何看資料
+
+- `head` 會列出前 6 筆資料。
+
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r}
+head(Boston)
+```
+
+
+
+---
+
+## Boston Dataset有哪些Variables
+
+Column Name | 中文 | Column Name | 中文
+- | - | - | -
+crim | 犯罪率 | rm | 該鎮平均每戶的房間數目
+dis | 離公司距離 | indus | 商業區比例
+lstat | lower status of the population (percent).低收入戶比例 | medv | 自有住宅房價中位數
+
+
+---
+
+你也可以使用head(),  tail(),  summary(),  str()
+
+
+---
+
+
+
+
+
+## 如何看資料- 好用的summary()
+
+```{r}
+summary(Boston)
+```
+
+
+---
+
+Column Name | 中文 | Column Name | 中文
+- | - | - | -
+crim | 犯罪率 | indus | 商業區率
+
+     crim              indus      
+ Min.   : 0.00632   Min.   : 0.46  
+ 1st Qu.: 0.08204   1st Qu.: 5.19  
+ Median : 0.25651   Median : 9.69  
+ Mean   : 3.61352   Mean   :11.14  
+ 3rd Qu.: 3.67708   3rd Qu.:18.10  
+ Max.   :88.97620   Max.   :27.74  
+
+犯罪率88.9%??
+
+
+---
+
+Column Name | 中文 | Column Name | 中文
+- | - | - | -
+rm | 該鎮平均每戶的房間數目 | dis | 離公司距離
+
+      rm             dis           
+ Min.   :3.561   Min.   : 1.130    
+ 1st Qu.:5.886   1st Qu.: 2.100    
+ Median :6.208   Median : 3.207    
+ Mean   :6.285   Mean   : 3.795    
+ 3rd Qu.:6.623   3rd Qu.: 5.188    
+ Max.   :8.780   Max.   :12.127 
+
+
+---
+
+Column Name | 中文 | Column Name | 中文
+- | - | - | -
+lstat | lower status of the population (percent).低收入戶比例 | medv | 自有住宅房價中位數
+
+   lstat             medv
+ Min.   : 1.73   Min.   : 5.00
+ 1st Qu.: 6.95   1st Qu.:17.02 
+ Median :11.36   Median :21.20
+ Mean   :12.65   Mean   :22.53
+ 3rd Qu.:16.95   3rd Qu.:25.00 
+ Max.   :37.97   Max.   :50.00 
+
 
 # R 與資料測量尺度
 
@@ -532,6 +683,8 @@ Length Class  Mode
 ### DataFreame
 
 ```{r}
+library(MASS)
+data(Boston)
 summary(Boston)
 ```
 
@@ -560,12 +713,29 @@ x > 3
 x[x > 3]
 ```
 
+## 練習一下
+
+台北恆春每月平均溫度
+
+月份 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 
+- |- | - | - | - | - | - | - | - | - | - | - | - 
+台北 | 16.1 | 16.5 |  18.5 |  21.9 |  25.2 |	27.7 |	29.6 |	29.2 |	27.4 | 24.5 |	21.5 |	17.9
+恆春 | 20.7 | 21.4 | 23.2 |	25.2 |	27.0 |	27.9 |	28.4 |	28.1 |	27.4 |	26.3 |	24.3 |	21.7
+
+---
+
+```{r Temp}
+TaipeiTem=c(16.1,16.5,18.5 ,	21.9 ,	25.2 ,	27.7 ,	29.6 ,	29.2,27.4,24.5 ,	21.5 ,	17.9)
+HengchunTem=c(20.7 , 21.4 , 23.2 ,  25.2 ,	27.0 ,	27.9 ,	28.4 ,	28.1 ,	27.4 ,	26.3 ,	24.3 ,	21.7)
+```
+
+
+
 ---
 
 ## 小挑戰選取台北恆春天氣資料
-
+先印出台北跟恆春每個月平均溫度
 ```{r}
-# 先印出台北跟恆春每個月平均溫度
 TaipeiTem
 HengchunTem
 ```
