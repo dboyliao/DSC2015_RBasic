@@ -1,0 +1,97 @@
+- Class: meta
+  Course: RBasic_Toturial
+  Lesson: FlowControl_Function
+  Author: Noah
+  Type: Standard
+  Organization: DSC 2015 R Tutorial
+  Version: 2.3.1
+
+- Class: text
+  Output: 範例1：if()/else() 用法：
+
+- Class: text
+  Output: if/else是R的一個邏輯判斷指令，若程式中有不同的條件來執行不同的選擇的時候，可以用if來完成
+
+- Class: text
+  Output: 注意：if()只是判斷"（）"括號內的東西是真的：[TRUE]，或是假的：[FALSE]，如果括號內的運算結果是TRUE，就會執行if()下一個指令，或是執行if()後面由大括號"{","}"所包起來的內容。但如果括號內的運算結果是FALSE，那if()的下一個指令，或是if()後面由大括號"{","}"所包起來的內容就不會執行
+
+- Class: text
+  Output: 問題：媽媽給了小明10個candy，媽媽說小明可以吃一些，但至少要留5個candy給妹妹，如果妹妹有吃到5個candy的話，媽媽會很高興，不過如果妹妹沒有吃到5個candy的話就會哭，媽媽聽到妹妹哭就會用愛來教訓小明。
+
+- Class: cmd_question
+  Output: 問題可能不是很好，中文可能不夠通順，但先不用管為什麼小明要不要吃糖果，為什麼妹妹會哭，為什麼媽媽只能給10個，請先輸入第一個條件如：candy=10
+  CorrectAnswer: candy = 10
+  AnswerTests: omnitest(correctExpr='candy = 10')
+  Hint: x = 10
+
+- Class: text
+  Output: 好了，我們已經有初始值：candy=10 了
+
+- Class: text
+  Output: 可能的狀況1：如果小明吃了3個candy，剩下10-3=7個candy，那把7個candy給妹妹吃，妹妹會很高興，媽媽也會很高興（別問我為什麼他們會高興）
+
+- Class: text
+  Output: 那要怎麼寫成程式呢？，先判斷：如果candy-3之後，剩下的數量有大於5的話。就列印媽媽很高興：print("Happy Mom~")
+
+- Class: cmd_question
+  Output: 如果原本candy的數量，在少了3之後，剩下的數量有沒有大於5呢？為了了解這個句子正確與否，請輸入適當的說明，記得要括號喔！
+  CorrectAnswer: (candy - 3) > 5
+  AnswerTests: omnitest(correctExpr='if((candy-3) > 5)')
+  Hint: 請輸入：(candy - 3) > 5
+
+- Class: text
+  Output: 看到 "[1] TRUE" 對吧，那就表示 (candy-3)>5這個式子成立。
+
+- Class: cmd_question
+  Output: 判斷之後，還要寫滿足判斷的後續行為，像是上面小明吃了3個，有剩下5個以上的candy給妹妹，就列印媽媽很高興：print("Happy Mom~")
+  CorrectAnswer: print("Happy Mom~")
+  AnswerTests: omnitest(correctExpr='print("Happy Mom~")')
+  Hint: 請輸入：print("Happy Mom~")
+
+
+- Class: cmd_question
+  Output: 前面有說過，當 if 括號內的運算結果是TRUE的話，就會執行下一個指令。而我們現在已經知道()內是TRUE，也知道判斷為TRUE之後的指令：列印媽媽很高興：print("Happy Mom~")，那就可以用if的判斷來使用了，請輸入： if ((candy - 3) > 5) print("Happy Mom~")
+  CorrectAnswer: if ((candy - 3) > 5) print("Happy Mom~")
+  AnswerTests: omnitest(correctExpr='if ((candy - 3) > 5) print("Happy Mom~")')
+  Hint: 請把下面整個複製貼上：if ((candy - 3) > 5) print("Happy Mom~")
+
+- Class: text
+  Output: 那麼，要是if()括號內的運算結果是FALSE呢？會出現什麼結果？
+
+- Class: text
+  Output: 是不是覺得太簡單，那再來考慮一下
+
+- Class: text
+  Output: 可能的狀況2：如果小明吃了10個candy，剩下10-10=0個candy，那妹妹沒有糖果吃而大哭，媽媽正義的鐵拳就飛到小明的頭上
+
+- Class: cmd_question
+  Output: 如果candy-3之後，剩下的數量有大於5的表示方法。記得要注意括號的使用！
+  CorrectAnswer: if ((candy - 3) > 5)
+  AnswerTests: omnitest(correctExpr='if((candy-3) > 5)')
+  Hint: 請輸入：if ((candy - 3) > 5)
+
+- Class: cmd_question
+  Output: 判斷之後，還要寫滿足判斷的後續行為，像是上面小明吃了3個，有剩下5個以上的candy給妹妹，就列印媽媽很高興：print("Happy Mom~")
+  CorrectAnswer: print("Happy Mom~")
+  AnswerTests: omnitest(correctExpr='print("Happy Mom~")')
+  Hint: 請輸入：print("Happy Mom~")
+
+
+- Class: text
+  Output: 當然，代誌不像我這種憨人想的一樣，狀況可能不只一種，柯南也說過：我用新之助的名義發誓兇手不只一個。
+
+- Class: text
+  Output: 狀況n：小明吃了10個candy，拿自己不要的玩具送給妹妹（妹妹 <- data.frame("爛玩具")），妹妹沒有大哭大鬧，媽媽看到妹妹玩很高興的樣子也很高興。
+
+- Class: text
+  Output: 狀況n+1：小明吃了3個candy，剩下10-3=7個candy，把其中5個candy給妹妹吃，妹妹很高興，小明再把剩下2個candy給媽媽，媽媽也很高興，然後又買10個candy給小明。
+
+- Class: text
+  Output: 狀況n+n：小明拿出10個candy成立一家公司（小明公司 <- candy+10），並說服媽媽額外的投資10個candy（小明公司 <- 小明公司+10），承諾會給媽媽和妹妹應有的股份，因為之前欠了大雄5個candy，先拿出1個candy還給大雄，並邀請大雄入股來免除剩下4個candy，但不巧被技安知道，技安要小明把剩下的70%的股份給他，並且要宜靜嫁給他。後來爸爸的私生女小月得知之後.....。剩下請參考三民的編劇
+
+- Class: text
+  Output: 問題：請問上面哪一種狀況，小明可以得到最多的candy？
+
+
+- Class: text
+  Output: 範例2：if()/else() 用法：邏輯判斷符號：

@@ -7,15 +7,22 @@ output:
     theme: flatly
     highlight: default
     logo: img/Taiwan-R-logo.png
-    widescreen: true
-    number_section: true
+    widescreen: yes
+    transition: faster
   slidy_presentation:
     toc: true
     number_section: true
   revealjs::revealjs_presentation:
     theme: beige
 subtitle: R 101
+
 ---
+
+<style>
+slides {
+  background-color: black;
+}
+</style>
 
 # Introduction
 

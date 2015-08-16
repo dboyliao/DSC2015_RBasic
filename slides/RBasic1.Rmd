@@ -9,6 +9,7 @@ output:
     logo: img/Taiwan-R-logo.png
     widescreen: true
     number_section: true
+    transition: faster
 subtitle: R 101
 
 ---
@@ -20,6 +21,10 @@ h2 {
 }
 span {
   font-size: 20px;
+}
+
+slides {
+  background-color: black;
 }
 </style>
 

@@ -1,0 +1,488 @@
+---
+title: "R Basic Toturial 2015"
+author: "Noah"
+date: '`r Sys.Date()`<br><br><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="img/by-nc-sa-4.0-88x31.png" /></a>'
+output:
+  ioslides_presentation:
+    fig_height: 3
+    fig_width: 6
+    highlight: default
+    logo: img/Taiwan-R-logo.png
+    widescreen: yes
+    transition: faster
+subtitle: "Flow Control, Function, and Debug/ErrorHandling
+http://www.meetup.com/Taiwan-R"
+---
+
+<style>
+li {
+  font-size: 36px;
+}
+code {
+  color: #DF013A;
+  font-family: 'Source Code Pro', 'Courier New', monospace;
+}
+
+span {
+  font-size: 24px;
+}
+
+pre {
+  line-height: 40px;
+}
+</style>
+
+<!--######################################################################################-->
+# Flow Control：程式流程控制：
+<!--######################################################################################-->
+
+## 前面把所有R的基本指令都介紹完了，
+相信有不少人應該可以自豪的說：學了R以後，
+<center><img  src="img/scope_A.png" height="75%" width="75%"/></center>
+
+# 不過......
+
+## 那...我來幹嘛？
+
+## 那...我來幹嘛？
+
+放大家去吃便當!?
+<center><img src="img/boxmeal.jpg" height="60%" width="60%" /></center>
+
+## 對了，
+
+如果課程中有任何問題都可以問**助教**，<br>
+R社群最神奇的地方就是：<br><br>
+<img src="img/meme-thumbup.png" style="float:right" height="30%" width="30%">
+<br><br><br><br><br><br>
+<center><font size='9'>**助教什麼都會!**</font></center>
+
+
+# 程式前言
+
+## 程式的概念：
+
+### 一個基本的程式，一般除了變數、資料之外 ，還有許多的指令來協助程式的完成。
+
+## 程式的概念：
+
+<font size='6'>《Algorithm＋Data Structure = Programs》</font>
+<font size='6'>by Writh</font>
+<br/>
+
+## 程式的概念：
+
+<font size='6'>《Algorithm＋Data Structure = Programs》</font>
+<font size='6'>by Writh</font>
+<br/>
+
+- Data Structure: 剛剛 Ning 已經教過了，忘了要記得複習喔!
+
+## 程式的概念：
+
+<font size='6'>《Algorithm＋Data Structure = Programs》</font>
+<font size='6'>by Writh</font>
+<br/>
+
+- Data Structure: 剛剛 Ning 已經教過了，忘了要記得複習喔!
+- Algorithm: 本節課程重點。實作方面分為兩大部分。
+    - Control Flow
+    - Function
+
+## 程式的概念：
+
+<font size='6'>《Algorithm＋Data Structure = Programs》</font>
+<font size='6'>by Writh</font>
+<br/>
+
+- Data Structure: 剛剛 Ning 已經教過了，忘了要記得複習喔!
+- Algorithm: 本節課程重點。實作方面分為兩大部分。
+    - Control Flow
+    - Function
+
+<div align=left>
+<font size='6'>
+簡單說，寫一個程式，其實和 **寫一段文章**，或是**一篇小說**差不多，
+是由取多小程式 (函數) ，根據演算法 (流程控制)，處理特定資料所組成。
+</font>
+</div>
+
+# Recap
+
+## R常用指令
+<img src="img/R_commands5-1.png" style="float:center" height="80%" width="80%" />
+<https://www.calvin.edu/~scofield/courses/m143/materials/RcmdsFromClass.pdf>
+
+## R常用指令
+<img src="img/R_commands5-2.png" style="float:center" height="80%" width="80%" />
+<https://www.calvin.edu/~scofield/courses/m143/materials/RcmdsFromClass.pdf>
+
+## 小提醒：data.frame()
+
+```{r, cache=TRUE, results='hold'}
+num1 = c(2, 3, 5) 
+str1 = c("aa", "bb", "cc") 
+logic1 = c(TRUE, FALSE, TRUE) 
+(df1 = data.frame(num1, str1, logic1))
+# df1 表示把 data.frame() 括號內的資料結合成為 data.frame 型態
+```
+
+## 比較c() vs data.frame()
+```{r, cache=TRUE, results='hold'}
+(df2 = c(num1, str1, logic1))
+# df2 表示為 c() 括號中向量資料的結合
+```
+
+# 小提醒：讀取檔案、表格：
+
+## 讀取CSV
+
+- CSV, Comma-separated values：逗號分隔數值
+- 範例: `variable = read.csv("file_name.csv")`
+
+```{r, cache=TRUE, results='hide'}
+iris_csv = read.csv("./static/iris.csv")
+View(iris_csv)
+```
+
+## 讀取 TXT
+
+-  TXT: 一般文字檔
+- 範例: `variable = read.table("file_name.txt")`
+
+```{r, cache=TRUE, results='hide'}
+iris_tab = read.table("./static/iris.txt")
+View(iris_tab)
+```
+
+## 讀取其他檔案 Excel
+
+- 注意：這個需要額外的套件，請先執行：`library(gdata)`
+- 範例: `variable = read.xls("file_name.xls")`
+
+```{r, cache=TRUE, results='hide'}
+library(gdata)
+iris_xls = read.xls("./static/iris.xls")
+View(iris_xls)
+```
+
+## 貼心小提醒：
+
+1. 查詢指令： **?指令**
+2. 查詢範例： **example(指令)**
+
+```{r, eval=FALSE, cache=TRUE, results='asis'}
+?list
+example(factor)
+```
+
+# Syllabus
+
+## Syllabus:
+
+### 判斷條件
+- `if` / `else`
+- `switch` <br>
+
+### 迴圈
+- `for`
+- `while`
+- `repeat` / `break`<br>
+
+範例：閏年計算
+
+## Syllabus:
+
+### Function
+
+- 編輯撰寫一個 R 程式
+
+### Debug and Error Handling
+
+- 除錯（找蟲）和例外處理
+
+
+
+<!--######################################################################################-->
+# Flow Control：程式流程控制：
+<!--######################################################################################-->
+
+## if / else
+
+### Syntex
+
+    if (condition_1){
+        #Do something here....
+    } else if (conditon_2){
+        #Do something here
+    } else {
+        #Do something here
+    }
+
+Note: **else if** and **else** are optional.
+
+### ==>  請看 swirl 的範例
+
+## ifelse()
+
+### 使用方法：
+
+  ifelse(test_cond1, res_yes, res_no)
+  若test_cond1的條件成立（回傳是TRUE），則會執行res_yes的動作，否則test_cond1回傳是FALSE的話，則會執行res_no
+  例如
+
+```{r, results='hold'}
+x = 7
+ifelse(x>10, print("x大於10"), print("x小於10"))
+```
+
+### ==>  請看 swirl 的範例
+
+## if / else 邏輯判斷符號
++ R支援的邏輯判斷符號如下：
+    + `==`：等於
+    + `<=`：小於等於
+    + `>=`：大於等於
+    + `>`：大於
+    + `<`：小於
+    + `!=`：不等於
+    + `&`：邏輯中的「且」 或「and」
+    + `|`：邏輯中的「或」 或「or」
+
+## **if / else** 和 **ifelse()** 的差別
+
+一般情況下，如果向量中只有一個變數時，`if / else` 和 `ifelse` 沒什麼差別，
+但如果向量是一個多個數值的陣列 `array`，矩陣 `matrix`，或是 `list / data.frame` 時，這時候就很難用 `if` 來判斷了。
+例如：
+```{r, results='hold', cache=TRUE}
+x = c(1:10)
+if (x>5)
+  print("x>5")
+```
+
+## **if / else** 和 **ifelse()** 的差別
+
+```{r, results='hold', cache=TRUE}
+x = c(1:10)
+ifelse((x>5),TRUE,FALSE)
+```
+
+
+### ==>  請看 swirl 的範例
+
+## 那會了if，可以怎麼用？
+<center><img src="img/meme-questioning.jpg" height="30%" width="30%" /></center>
+
+# 小測驗：閏年
+
+## 情境：小明的故事一
+小明得到媽媽的鼓勵和更多的糖果之後，就開開心心的去學校了。
+上學途中，看到滿天飛舞的櫻花，不禁心頭一陣酸楚，之前拿到的糖果此時居然愈來愈重，吃了之後也不覺得甜美。
+邊走邊想著：小時候喜歡的那個女孩，也是曾經在這種爛漫的的櫻花中，含著眼淚吞著鼻水的互相告別，不知道現在怎麼樣了？
+對了，記得她是閏年出生的，那閏年的意義對她應該很重要吧。我們兩個人年紀都大了，已經不是3歲5歲的小孩了，我還能去找她嗎？還有機會嗎？還可以在一起嗎？
+
+這時候，小明下定決心，想要認真的面對這段以前甜美，現在遺憾的回憶，打算在閏年的時候，鼓起勇氣去找她。
+便在路旁的星巴八飲料店，拿出優雅的水果電腦，很快的在電腦上用R寫了一個判斷閏年的小工具。
+
+原來如此。小明突然覺得自己很厲害
+
+<center><img src="img/troll_dancing.gif" height="30%" width="30%"></center>
+
+
+## 請判斷輸入的年份是不是閏年？
+<br>
+目前使用的格里曆閏年規則如下：<br>
+<img src="img/leap_year.gif" style="float:right" height="50%" width="50%">
+<br><br>
+<font size='5'>
+    西元年份除以400可整除=閏年。<br><br>
+    西元年份除以4可整除但除以100不可整除=閏年。<br><br>
+    西元年份除以4不可整除=平年。<br><br>
+    西元年份除以100可整除但除以400不可整除=平年<br><br>
+</font>
+<br>
+<div style="float:right"><https://zh.wikipedia.org/zh-tw/%E9%97%B0%E5%B9%B4></div>
+
+
+## case 1: if, else, %%, ==
+```{r, results='hold'}
+year1 = 2015  #或是可以用 as.integer(readline("input year:"))，來輸入想要的數值
+if ((year1 %% 4)==0){
+  if ((year1 %% 100)==0){
+    if ((year1 %% 400)==0)
+      print("Leap year")
+    else
+      print("Not leap year")
+  } else {
+    print("Leap year")
+  }
+} else {
+  print("Not leap year")
+}
+```
+
+## case2: 運用邏輯符號的"!"(not)，"&"(and)，以及"|"(or)
+```{r, results='hold'}
+year1 = 2015  #或是可以用 as.integer(readline("input year:"))，來輸入想要的數值
+if ( ((!(year1 %% 4)) && (year1 %%100)) || (!(year1 %% 400)) ){  
+  print("Leap year")
+} else {  
+  print("Not leap year")  
+}
+```
+
+# 迴圈
+
+# for()
+
+## for()
+for() 迴圈簡單說就是某個動作重複做多少次，一般來說，需要明確的知道
+
+
+## 會了for，可以怎麼用？
+這是copy-paste沒錯
+<center><img src="img/meme-questioning.jpg" height="40%" width="40%" /></center>
+
+# 小測驗2：算有多少個閏年
+
+## 情境：小明的故事二
+小明又出現了，這次他帶著更多的遺憾，更多的苦澀，回到家裡。
+可是，小明他自己知道，小明這個名字是以前國立編譯館，眾多國中國小出版社，PTT八卦版許多夢境中最常被拿出來用的名字，
+「小明」這兩個字充滿著正面、希望、勇氣、努力，根本就是各種可能的代名詞。連小明的日文名字：Hikari或Akira，都是史詩巨作：棋靈王主角的名字。
+「我不能如此放棄」，小明如此的對自己這麼說。
+
+這麼想的小明，腦中開始的一連串的計劃了。首先，小明第一件要做的事情，毫無疑問的就是要知道，到底有多少年是閏年。
+
+這時候路旁的小七便利店，突然360度翻了過來，瞬間變成一家星巴八飲料店的外觀，
+小七店內突然傳出聲響：Change，仔細一看，小七店員身上的招牌紅色T-Shirt，居然也變成星巴八的白衣綠裙。
+
+天時地利人和，小明毫不猶豫的，拿起手上的水果電腦，再次走進星巴八內，誓言如果沒辦法用R寫出計算閏年的程式的話就不出來。
+
+<center><img src="img/victory-baby.jpg" height="40%" width="40%" /></center>
+
+## 請說明輸入一段時間內（如1000~2015），有幾年是閏年？並列出分別是哪幾年？
+
+除了上面的判斷是不是閏年之外，麻煩請在想一想，如何把一段時間內，例如從西元1000至西元2015年到底有多少年是閏年，分別為哪幾年？
+
+提醒：可以用for來持續檢查某一年是否是閏年，例如：開始年：1000，結束年：2015
+
+for(任意變數 in 開始:結束){
+  打算要重複執行的程式
+}
+
+
+## case1: 使用上面的判斷式
+```{r, results='hold'}
+yearS = 1980 # 或是可以輸入：as.integer(readline("input start year:")) 來自己輸入開始年
+yearE = 2100 # 或是可以輸入：as.integer(readline("input end year:")) 來輸入結束年
+year_cnt=0
+for (n in yearS:yearE){
+  if ( ((!(n %% 4)) && (n %%100)) || (!(n %% 400)) ){
+    year_cnt = c(year_cnt,n)
+  }
+}
+year_cnt = year_cnt[-1]
+paste("total:", length(year_cnt)," leap years")
+```
+
+## case2: 使用等一下要講的函式來簡化以及方便閱讀程式
+```{r, results='hold'}
+is_leap_year = function(year1){
+  if (((!(year1 %% 4)) && (year1 %%100)) || (!(year1 %% 400)) ){  return(TRUE)
+  } else {  return(FALSE)  }  
+}
+yearS = 1980 # 或是可以輸入：as.integer(readline("input start year:")) 來自己輸入開始年
+yearE = 2100 # 或是可以輸入：as.integer(readline("input end year:")) 來輸入結束年
+year_cnt=0
+for (n in yearS:yearE){
+  if (is_leap_year(n)){
+    year_cnt = c(year_cnt,n)
+    #print("year:",n)
+  }
+}
+year_cnt = year_cnt[-1]
+paste("total:", length(year_cnt)," leap years")
+```
+
+<!--######################################################################################-->
+# Function：函數/函式說明
+<!--######################################################################################-->
+
+## Function
+Function，一般稱為函數，函式，或叫作方程式，簡單說就是把一堆為了相同目的的指令，用一個名稱綁在一起。
+
+例如：
+```{r, results='hold'}
+helloworld <- function(name1){
+  paste("Hello World,", name1)
+}
+helloworld("N")
+```
+helloworld：就是函式名稱，之後要使用的話，直接在命令列上輸入helloworld()就可以了
+name1：代表這個函式所帶入的參數，這邊取用name1當作參數的名字。
+
+
+<!--######################################################################################-->
+# Debug / Error Handling：除錯，錯誤管理
+<!--######################################################################################-->
+
+## Debug
+寫了一堆程式之後，人都可能被劈腿，手一定有機會出鎚，這時候就需要一些去除錯誤（簡稱：除錯）的工具來幫忙找到錯誤。<br>
+幸運的是，R內部就已經提供的debug() / undebug()的工具來一步一步，一行一行的找到問題。
+
+遇到不知道怎麼使用的指令時，在console命令列中輸入?debug，變可以看到debug的說明。<br>
+或是想知道有沒有範例可以知道某個指令怎麼用？在console命令列中輸入example(指令)，變可以看到該指令的應用
+
+```{r}
+?debug
+```
+
+## Error Handling
+RBlogger的範例：
+<http://www.r-bloggers.com/error-handling-in-r/>
+
+inputs = list(1, 2, 4, -5, 'oops', 0, 10) <br>
+for(input in inputs) { <br>
+  print(paste("log of", input, "=", log(input))) <br>
+} <br>
+
+
+很明顯的，log的參數只能接受不能輸入負數的資料，而且文字資料一定出錯，那我們要怎麼避免？
+
+## Error Handling: 使用try()來攔截錯誤，並且讓程式繼續執行
+
+```{r, results='hold'}
+inputs = list(1, 2, 4, -5, 'oops', 0, 10)
+for(input in inputs) {
+  try(print(paste("log of", input, "=", log(input))))
+}
+```
+
+### ==> 請參考swirl範例
+
+## Error Handling: 使用tryCatch()來顯示錯誤
+```{r, results='hold'}
+inputs = list(1, 2, 4, -5, 'oops', 0, 10)
+for(input in inputs) {
+  tryCatch(print(paste("log of", input, "=", log(input))),
+  warning = function(w) {
+      print(paste("negative argument", input));
+      log(-input)
+    },
+    error = function(e) {
+        print(paste("non-numeric argument", input));
+        NaN})
+}
+```
+
+### ==> 請參考swirl範例
+
+## 課程預告：
+
+### ETL (Extract, Transform and Load ) on R, by Aha
+### R Visualzation : using ggplot2, by Mansun / Ben / Kyle
+### R 火力展示 / 閃電秀, by c3h3
+### R 專題實習 , by Wush
+
+
+# Q / A
