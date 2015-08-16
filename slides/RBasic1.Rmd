@@ -876,20 +876,41 @@ Jolin
 ### 異質性資料 dataframe
 
 View(Boston)
-str(Boston)
+
 
 ---
 
+DataFrame呈現
+
+![Matrix1](~/Dropbox/Rprojects/RBasic1/img/R_Basic_Matrix.png)
+
+
+---
+
+## DataFrame Row的概念
+
+![MatrixRow](~/Dropbox/Rprojects/RBasic1/img/R_Basic_Matrix_row.png)
+
+
+---
+
+
+## DataFrame Column的概念
+
+![MatrixRow](~/Dropbox/Rprojects/RBasic1/img/R_Basic_Matrix_col.png)
+
+
+
 #### Ways to add a column
 
-Boston$Income<-  
+Boston$Income<-    
 Boston[["Income"]]<-  
 
 ---
 
 #### Ways to remove the column
 
-Boston$Income<-NULL
+Boston$Income<-NULL  
 Boston[["Income"]]<-NULL
 
 ---
@@ -916,136 +937,6 @@ RBasic=cbind(c(1,2,3),c("Dboy", "Ning", "Noha"))
 
 ---
 
-### Merge  
-
-```{r}
-PageView <- read.table(header=TRUE, text='
-     Date       PageView Rating
-           7/1      1231     6.7
-           7/2      5423    4.5
-           7/3      3219    3.7
-           7/4       998    3.3
-           7/5       3241    4.1
-           7/6       1223    5.2')
-Promotion <- read.table(header=TRUE, text='
-     Date       Promotion 
-           7/1      N
-           7/2      Y
-           7/3      Y
-           7/4      N
-           7/5      Y
-           7/6      N   ')
-
-merge(PageView,Promotion,"Date")
-```
-
----
-
-### 轉換資料結構 
-
-`as`
-
-- `as.character`
-- `as.logical`
-- `as.integer`
-- `as.numeric`
-
----
-
-```{r as}
-as.numeric("2")
-as.integer("a")
-```
-
-```{r as.character, echo = TRUE}
-x <- c(1, 2, 3, 2, 3, 2, 1)
-as.character(x) # 字串
-factor(x) # ??用剛才dataframe作
-```
-
----
-
-### 直接轉換
-
-```{r as.numeric, echo = TRUE}
-x <- c("1", "2", "3", "2", "a")
-as.numeric(x)
-```
-
-- `NA`代表Not available，代表著**missing value**
-
----
-
-## 資料形態的轉換 - 資料清理
-
----
-
-### 民國80年至82年的國民生產毛額
-
-
-百萬元
-5,023,763
-5,614,679
-6,205,338
-
-
-```{r gdp1, echo = TRUE}
-gdp <- c("5,023,763", "5,614,679", "6,205,338")
-as.numeric(gsub(",", "", gdp))
-```
-
----
-
-## summary 指令
-
-- 根據資料形態的不同，函數的輸出結果也會不同
-
----
-
-### Factor
-
-```{r}
-factor_example=factor(c("三年甲班", "三年乙班", "三年甲班"))
-summary(factor_example)
-```
-三年乙班 三年甲班 
-1        2 
-
----
-
-### Character
-
-```{r}
-character_example=c("a","b","c")
-summary(character_example)
-```
-Length     Class      Mode 
-3       character   character 
-
----
-
-### List
-
-```{r}
-list_example <- list(1L, 2.0, "3")
-summary(list_example)
-```
-Length Class  Mode     
-[1,] 1      -none- numeric  
-[2,] 1      -none- numeric  
-[3,] 1      -none- character
-
----
-
-### DataFreame
-
-```{r}
-library(MASS)
-data(Boston)
-summary(Boston)
-```
-
----
 
 ## 資料的選取
 
@@ -1076,7 +967,7 @@ x[x > 3]
 
 月份 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 
 - |- | - | - | - | - | - | - | - | - | - | - | - 
-台北 | 16.1 | 16.5 |  18.5 |  21.9 |  25.2 |	27.7 |	29.6 |	29.2 |	27.4 | 24.5 |	21.5 |	17.9
+台北 | 16.1 | 16.5 |  18.5 |  21.9 |  25.2 |  27.7 |	29.6 |	29.2 |	27.4 | 24.5 |	21.5 |	17.9
 恆春 | 20.7 | 21.4 | 23.2 |	25.2 |	27.0 |	27.9 |	28.4 |	28.1 |	27.4 |	26.3 |	24.3 |	21.7
 
 ---
@@ -1155,6 +1046,101 @@ TemTable[1,]
 head(Boston)
 head(Boston[["crim"]]) # head(Boston$crim)
 ```
+
+
+
+
+
+
+---
+
+### 轉換資料結構 
+
+`as`
+
+- `as.character`
+- `as.logical`
+- `as.integer`
+- `as.numeric`
+
+---
+
+```{r as}
+as.numeric("2")
+as.integer("a")
+```
+
+```{r as.character, echo = TRUE}
+x <- c(1, 2, 3, 2, 3, 2, 1)
+as.character(x) # 字串
+factor(x) # ??用剛才dataframe作
+```
+
+---
+
+### 直接轉換
+
+```{r as.numeric, echo = TRUE}
+x <- c("1", "2", "3", "2", "a")
+as.numeric(x)
+```
+
+- `NA`代表Not available，代表著**missing value**
+
+---
+
+---
+
+## summary 指令
+
+- 根據資料形態的不同，函數的輸出結果也會不同
+
+---
+
+### Factor
+
+```{r}
+factor_example=factor(c("三年甲班", "三年乙班", "三年甲班"))
+summary(factor_example)
+```
+三年乙班 三年甲班 
+1        2 
+
+---
+
+### Character
+
+```{r}
+character_example=c("a","b","c")
+summary(character_example)
+```
+Length     Class      Mode 
+3       character   character 
+
+---
+
+### List
+
+```{r}
+list_example <- list(1L, 2.0, "3")
+summary(list_example)
+```
+Length Class  Mode     
+[1,] 1      -none- numeric  
+[2,] 1      -none- numeric  
+[3,] 1      -none- character
+
+---
+
+### DataFreame
+
+```{r}
+library(MASS)
+data(Boston)
+summary(Boston)
+```
+
+---
 
 ---
 
