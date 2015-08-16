@@ -148,13 +148,13 @@ Column Name | 中文 | Column Name | 中文
 - | - | - | -
 crim | 犯罪率 | indus | 商業區率
 
-     crim              indus      
- Min.   : 0.00632   Min.   : 0.46  
- 1st Qu.: 0.08204   1st Qu.: 5.19  
- Median : 0.25651   Median : 9.69  
- Mean   : 3.61352   Mean   :11.14  
- 3rd Qu.: 3.67708   3rd Qu.:18.10  
- Max.   :88.97620   Max.   :27.74  
+<bar>
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r,echo=FALSE}
+library(knitr)
+kable(summary(Boston[,c("crim", "indus")]))
+```
+
 
 犯罪率88.9%??
 
@@ -165,28 +165,33 @@ Column Name | 中文 | Column Name | 中文
 - | - | - | -
 rm | 該鎮平均每戶的房間數目 | dis | 離公司距離
 
-      rm             dis           
- Min.   :3.561   Min.   : 1.130    
- 1st Qu.:5.886   1st Qu.: 2.100    
- Median :6.208   Median : 3.207    
- Mean   :6.285   Mean   : 3.795    
- 3rd Qu.:6.623   3rd Qu.: 5.188    
- Max.   :8.780   Max.   :12.127 
+<bar>
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r,echo=FALSE}
 
+kable(summary(Boston[,c("rm", "dis")]))
+```
 
 ---
 
 Column Name | 中文 | Column Name | 中文
 - | - | - | -
-lstat | lower status of the population (percent).低收入戶比例 | medv | 自有住宅房價中位數
+lstat | 低收入戶比例 | medv | 自有住宅房價中位數
 
-   lstat             medv
- Min.   : 1.73   Min.   : 5.00
- 1st Qu.: 6.95   1st Qu.:17.02 
- Median :11.36   Median :21.20
- Mean   :12.65   Mean   :22.53
- 3rd Qu.:16.95   3rd Qu.:25.00 
- Max.   :37.97   Max.   :50.00 
+<bar>
+<div class="hidecode" onclick="doclick(this);">[Show]</div>
+```{r,echo=FALSE}
+
+kable(summary(Boston[,c("lstat", "medv")]))
+```
+
+---
+
+
+
+
+
+---
 
 
 # R 與資料測量尺度
