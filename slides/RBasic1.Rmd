@@ -43,6 +43,10 @@ font-weight:bolder;
 }
 
 div.hidecode + pre + pre {display: none}
+
+slides {
+  background-color: black;
+}
 </style>
 <script>
 doclick=function(e){

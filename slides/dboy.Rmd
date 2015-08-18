@@ -9,7 +9,6 @@ output:
     logo: img/Taiwan-R-logo.png
     toc: true
     widescreen: yes
-    transition: faster
   slidy_presentation:
     toc: true
     number_section: true
@@ -29,7 +28,9 @@ h2 {
 }
 </style>
 
+<!--######################################################################################-->
 # Introduction
+<!--######################################################################################-->
 
 ---
 

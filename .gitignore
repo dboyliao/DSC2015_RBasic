@@ -3,4 +3,5 @@
 *.RData
 *.rdb
 *.rdx
-*_cached
+*_cache
+*_files
