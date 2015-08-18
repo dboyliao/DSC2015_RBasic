@@ -155,8 +155,8 @@
 
 - Class: cmd_question
   Output: 現在來試試看，請先輸入 play() 再輸入 hello_world_r(my_name) 看看會發生什麼事。輸入 nxt() 會到 swirl 並輸入 skip() 繼續。
-  CorrectAnswer: "R Rocks"
-  AnswerTests: omnitest("R Rocks")
+  CorrectAnswer: '"TWUseR Rocks"'
+  AnswerTests: omnitest('"TWUseR Rocks"')
   Hint: 請輸入 skip() 繼續。
 
 - Class: text
