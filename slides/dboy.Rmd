@@ -7,6 +7,7 @@ output:
     theme: flatly
     highlight: default
     logo: img/Taiwan-R-logo.png
+    toc: true
     widescreen: yes
     transition: faster
   slidy_presentation:
@@ -22,6 +23,10 @@ subtitle: R 101
 slides {
   background-color: black;
 }
+
+h2 {
+  font-size: 45px
+}
 </style>
 
 # Introduction
@@ -33,26 +38,26 @@ slides {
 ---
 
 - 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
-- 我們將會教導大家基本的資料分析技巧，包括資料整理(ETL)、資料分析與資料視覺化等等。
+- 我們將會教導大家基本的資料分析技巧，包括資料整理 (ETL)、資料分析與資料視覺化等等。
 
 ---
 
 - 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
-- 我們將會教導大家基本的資料分析技巧，包括資料整理(ETL)、資料分析與資料視覺化等等。
-- 在這次的 workshop ，都是使用 swirl 這個R的互動式教學套件。
+- 我們將會教導大家基本的資料分析技巧，包括資料整理 (ETL)、資料分析與資料視覺化等等。
+- 在這次的 workshop ，都是使用 swirl 這個 R 的互動式教學套件。
 
 ---
 
 - 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
-- 我們將會教導大家基本的資料分析技巧，包括資料整理(ETL)、資料分析與資料視覺化等等。
-- 在這次的 workshop ，都是使用 swirl 這個R的互動式教學套件。
+- 我們將會教導大家基本的資料分析技巧，包括資料整理 (ETL)、資料分析與資料視覺化等等。
+- 在這次的 workshop ，都是使用 swirl 這個 R 的互動式教學套件。
 - 跟 R 不熟? 跟 swirl 更不熟? 沒關係，我們會帶領大家一步一步使用 R 與 swirl 套件。
 
 ---
 
 - 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
-- 我們將會教導大家基本的資料分析技巧，包括資料整理(ETL)、資料分析與資料視覺化等等。
-- 在這次的 workshop ，都是使用 swirl 這個R的互動式教學套件。
+- 我們將會教導大家基本的資料分析技巧，包括資料整理 (ETL)、資料分析與資料視覺化等等。
+- 在這次的 workshop ，都是使用 swirl 這個 R 的互動式教學套件。
 - 跟 R 不熟? 跟 swirl 更不熟? 沒關係，我們會帶領大家一步一步使用 R 與 swirl 套件。
 - OK! let the journey begin!
 
@@ -144,6 +149,19 @@ slides {
 - `^` 用於計算冪級。
 - <font color=red>(Important!)</font> 碰到問題可以用 `?` 與 `??` 查詢文件。
 
+## Swirl Cheat Sheet
+
+|   函數名   |            說明             |
+|------------|-----------------------------|
+|   `info`   | 列出 `swirl` 中可用的函式。 |
+|   `skip`   | 跳至下一題。                |
+|   `play`   | 暫時跳出 `swirl`。          |
+|   `nxt`    | 跳回 `swirl`。              |
+|   `bye`    | 結束 `swirl`。              |
+|   `main`   | 跳至 `swirl` 主目錄區。     |
+
+**Note**: 以上指令要在 `swirl` 中時看到 `>` 時才能使用。
+
 # What's Next?
 
 ---
@@ -153,7 +171,7 @@ slides {
 <img src="img/ning.jpg" width=35% height=35%>
 </div>
 
-- R Build-in Data Structure
+- Data Structure in R
 
 ---
 
@@ -162,7 +180,7 @@ slides {
 <img src="img/ning.jpg" width=35% height=35%>
 </div>
 
-- R Build-in Data Structure
+- Data Structure in R
 - Basic Data Analysis with R
 
 ---
@@ -172,7 +190,7 @@ slides {
 <img src="img/noah.jpg" width=25% height=25%>
 </div>
 
-- Control Flow and Exception Handling
+- User-Defined Function
 
 ---
 
@@ -181,6 +199,8 @@ slides {
 <img src="img/noah.jpg" width=25% height=25%>
 </div>
 
+- User-Defined Function
 - Control Flow and Exception Handling
-- Function
 
+
+# Q / A
