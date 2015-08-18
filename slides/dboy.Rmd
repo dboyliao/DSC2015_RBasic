@@ -99,7 +99,7 @@ h2 {
 
 ---
 
-- 如果沒有看到 `DSC2015` ，可以輸入下列指令進行安裝。
+- 如果沒有看到 `DSC2015` ，可以輸入 `install_course()` 進行安裝。
 
 ![install_course](img/install_course.png)
 
