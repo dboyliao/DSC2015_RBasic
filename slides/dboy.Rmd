@@ -68,16 +68,16 @@ h2 {
 
 ---
 
-- 請輸入 `library("swirl")`
+- 請輸入 `library("DSC2015R")`
 
 ---
 
-- 請輸入 `library("swirl")`
+- 請輸入 `library("DSC2015R")`
 - 執行 `swirl()` 進入互動教學模式。
 
 ---
 
-- 請輸入 `library("swirl")`
+- 請輸入 `library("DSC2015R")`
 - 執行 `swirl()` 進入互動教學模式。
 - 遵照指令，你應該會看到:
 
