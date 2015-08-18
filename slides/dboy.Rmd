@@ -20,7 +20,7 @@ subtitle: R 101
 
 <style>
 slides {
-  background-color: black;
+  background: black;
 }
 
 h2 {
