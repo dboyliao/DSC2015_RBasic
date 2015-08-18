@@ -19,8 +19,9 @@ subtitle: R 101
 ---
 
 <style>
+
 slides {
-  background: black;
+  background-color: black;
 }
 
 h2 {
