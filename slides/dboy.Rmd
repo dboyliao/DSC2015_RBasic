@@ -25,7 +25,15 @@ slides {
 }
 
 h2 {
-  font-size: 45px
+  font-size: 45px;
+}
+
+pre {
+  padding:20px;
+}
+
+pre span {
+  font-size: 24px;
 }
 </style>
 
@@ -46,21 +54,21 @@ h2 {
 
 - 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
 - 我們將會教導大家基本的資料分析技巧，包括資料整理 (ETL)、資料分析與資料視覺化等等。
-- 在這次的 workshop ，都是使用 swirl 這個 R 的互動式教學套件。
+- 在這次的 workshop ，都是使用 `swirl` 這個 R 的互動式教學套件。
+
+---
+
+- 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
+- 我們將會教導大家基本的資料分析技巧，包括資料整理 (ETL)、資料分析與資料視覺化等等。
+- 在這次的 workshop ，都是使用 `swirl` 這個 R 的互動式教學套件。
+- 跟 R 不熟? 跟 `swirl` 更不熟? 沒關係，我們會帶領大家一步一步使用 R 與 `swirl` 套件。
 
 ---
 
 - 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
 - 我們將會教導大家基本的資料分析技巧，包括資料整理 (ETL)、資料分析與資料視覺化等等。
 - 在這次的 workshop ，都是使用 swirl 這個 R 的互動式教學套件。
-- 跟 R 不熟? 跟 swirl 更不熟? 沒關係，我們會帶領大家一步一步使用 R 與 swirl 套件。
-
----
-
-- 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
-- 我們將會教導大家基本的資料分析技巧，包括資料整理 (ETL)、資料分析與資料視覺化等等。
-- 在這次的 workshop ，都是使用 swirl 這個 R 的互動式教學套件。
-- 跟 R 不熟? 跟 swirl 更不熟? 沒關係，我們會帶領大家一步一步使用 R 與 swirl 套件。
+- 跟 R 不熟? 跟 `swirl` 更不熟? 沒關係，我們會帶領大家一步一步使用 R 與 `swirl` 套件。
 - OK! let the journey begin!
 
 
@@ -68,16 +76,43 @@ h2 {
 
 ---
 
-- 請輸入 `library("DSC2015R")`
+- 還沒安裝 `DSC2015R` 的同學，請參考以下網址說明安裝:
+    - [TaiwanRUser](https://github.com/TaiwanRUserGroup/DSC2015Tutorial#安裝課程所需套件)
 
 ---
 
-- 請輸入 `library("DSC2015R")`
+- 還沒安裝 `DSC2015R` 的同學，請參考以下網址說明安裝:
+    - [TaiwanRUser](https://github.com/TaiwanRUserGroup/DSC2015Tutorial#安裝課程所需套件)
+    - 如果以上網址失效，請輸入下列指令安裝套件:
+
+```{r, eval=FALSE}
+options("DSC2015-repo" = "140.112.170.196")
+source("http://140.112.170.196/R/init.R")
+```
+
+---
+
+- 安裝完後，請輸入 `library("DSC2015R")`
+
+---
+
+- 安裝完後，請輸入 `library("DSC2015R")`
+- 為了避免課程內容版本有所出入，請先執行 `uninstall_all_courses()`。
+
+---
+
+- 安裝完後，請輸入 `library("DSC2015R")`
+- 為了避免課程內容版本有所出入，請先執行 `uninstall_all_courses()`。
+- 再執行 `install_course()` 安裝今日所需課程。
+
+![install_course](img/install_course.png)
+
+---
+
 - 執行 `swirl()` 進入互動教學模式。
 
 ---
 
-- 請輸入 `library("DSC2015R")`
 - 執行 `swirl()` 進入互動教學模式。
 - 遵照指令，你應該會看到:
 
@@ -96,12 +131,6 @@ h2 {
 ![swirl_sections](img/swirl_select_section.png)
 <br>
 （如果這時候想跳出，可以輸入 0 。）
-
----
-
-- 如果沒有看到 `DSC2015` ，可以輸入 `install_course()` 進行安裝。
-
-![install_course](img/install_course.png)
 
 ---
 
