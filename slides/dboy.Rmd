@@ -67,7 +67,7 @@ pre span {
 
 - 歡迎大家參加這次 DSC 2015 的 R Tutorial Workshop!
 - 我們將會教導大家基本的資料分析技巧，包括資料整理 (ETL)、資料分析與資料視覺化等等。
-- 在這次的 workshop ，都是使用 swirl 這個 R 的互動式教學套件。
+- 在這次的 workshop ，都是使用 `swirl` 這個 R 的互動式教學套件。
 - 跟 R 不熟? 跟 `swirl` 更不熟? 沒關係，我們會帶領大家一步一步使用 R 與 `swirl` 套件。
 - OK! let the journey begin!
 
@@ -94,6 +94,10 @@ source("http://140.112.170.196/R/init.R")
 
 - 安裝完後，請輸入 `library("DSC2015R")`
 
+```{r, results='hold'}
+library("DSC2015R")
+```
+
 ---
 
 - 安裝完後，請輸入 `library("DSC2015R")`
@@ -106,6 +110,17 @@ source("http://140.112.170.196/R/init.R")
 - 再執行 `install_course()` 安裝今日所需課程。
 
 ![install_course](img/install_course.png)
+
+---
+
+- 安裝完後，請輸入 `library("DSC2015R")`
+- 為了避免課程內容版本有所出入，請先執行 `uninstall_all_courses()`。
+- 再執行 `install_course()` 安裝今日所需課程。
+- 最後執行 `packageVersion("DSC2015R")` 確認版本。
+
+```{r, results='hold'}
+packageVersion("DSC2015R")
+```
 
 ---
 

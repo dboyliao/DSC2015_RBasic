@@ -84,27 +84,28 @@
   Output: factor 最需要注意的就是它與向量的差別了
   
 - Class: text
-  Output: 我幫你們造了兩個變數，分別是 my_vec 與 my_factor。
+  Output: 我幫你們造了個變數 my_vec ，是個字元的向量。
 
 - Class: text
-  Output: 顧名思義，一個是向量一個是 factor 。
+  Output: 若同時轉換成 numeric 會有什麼不同呢? 讓我們用下面的例子來看看。
 
+- Class: cmd_question
+  Output: as.numeric(my_vec) 會是多少呢? 試試看吧!
+  CorrectAnswer: as.numeric(my_vec)
+  AnswerTests: omnitest("as.numeric(my_vec)")
+  Hint: Just try it!
+  
 - Class: text
-  Output: 但它們又有什麼不同呢? 讓我們用下面的例子來看看。
+  Output: 沒有意外的話，應該會看到 1 2 1 1
 
-- Class: mult_question
-  Output: "as.numeric(my_vec) 會是多少呢?"
-  AnswerChoices: 1 2 1 1;NA;2 1 2 2
-  CorrectAnswer: 1 2 1 1
-  AnswerTests: omnitest(correctVal = "1 2 1 1")
-  Hint: 可以輸入 play() 來做實驗，做完記得用 nxt() 會到 swirl 喔!
-
-- Class: mult_question
-  Output: as.numeric(my_factor) 又會是多少呢?
-  AnswerChoices: 1 2 1 1;NA;2 1 2 2
-  CorrectAnswer: 2 1 2 2
-  AnswerTests: omnitest(correctVal = "2 1 2 2")
+- Class: cmd_question
+  Output: as.factor(my_vec) 又會是多少呢? 試試看吧！
+  CorrectAnswer: as.factor(my_vec)
+  AnswerTests: omnitest("as.factor(my_vec)")
   Hint: 試試看就知道囉!
+  
+- Class: text
+  Output: 奇怪....多了個 Levels? 那是什麼呢?
 
 - Class: text
   Output: 想想為什麼吧! 圖文說明請看這邊 ---> http://dboyliao.github.io/RBasic_reveal/#/11/9

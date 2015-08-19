@@ -16,7 +16,7 @@ setwd("~/Documents/R_scripts/DSC2015/RBasic/")
 # set_lesson("RBasic/R_Basic_Part_3-Control_Flow/lesson.yaml")
 
 rm(list=ls())
-uninstall_course("DSC2015")
+uninstall_all_courses()
 install_course_directory("DSC2015")
 system("zip -r DSC2015.zip DSC2015")
 delete_progress("dboy")
