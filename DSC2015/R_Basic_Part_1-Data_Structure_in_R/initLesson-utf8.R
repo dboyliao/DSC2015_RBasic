@@ -5,9 +5,9 @@
 rm(list=ls())
 hello <- "Hello"
 world <- "World."
-tenshia <- "¤Ñ¤U¤§¨Æ,¦X¤[¥²¤À¤À¤[¥²¦X"
-puff <- "³¢³·ªÜ"
-takeshi <- "ª÷«°ªZ"
+tenshia <- "å¤©ä¸‹ä¹‹äº‹,åˆä¹…å¿…åˆ†åˆ†ä¹…å¿…åˆ"
+puff <- "éƒ­é›ªèŠ™"
+takeshi <- "é‡‘åŸŽæ­¦"
 months_ans <- c(1:12)
 my_vec <- c("1", "2", "1", "1")
 my_factor <- factor(my_vec)
